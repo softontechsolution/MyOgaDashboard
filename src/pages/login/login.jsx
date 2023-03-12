@@ -23,11 +23,7 @@ const Login = () => {
                 navigate("/");
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
                 setError(true);
-                console.log(errorCode);
-                console.log(errorMessage);
             });
 
 
@@ -35,6 +31,7 @@ const Login = () => {
 
     return (
         <div className="login">
+            <h1 className="title">Welcome Admin, Sign In</h1>
             <form onSubmit={handleLogin}>
                 <input type="email" placeholder="enter email address" onChange={e=>setEmail(e.target.value)}/>
                 <input type="password" placeholder="enter password" onChange={e=>setPassword(e.target.value)}/>

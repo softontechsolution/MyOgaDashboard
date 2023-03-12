@@ -1,11 +1,17 @@
 .login{
     height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: #dcf3fd;
 
+    .title{
+        margin-bottom: 20px;
+    }
+
     form{
+        background-color: #e290fa;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -17,17 +23,21 @@
     input{
         width: 200px;
         height: 40px;
-        margin: 20px;
+        margin: 10px;
+        border-radius: 10px;
     }
 
     button{
         width: 200px;
-        height: 30px;
+        height: 40px;
         border: none;
         background-color: #00002e;
         color: white;
         font-weight: bold;
         cursor: pointer;
+        margin-top: 30px;
+        margin-bottom: 10px;
+        font-size: 20px;
     }
 
     span{
