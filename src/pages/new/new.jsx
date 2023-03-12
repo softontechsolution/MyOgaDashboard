@@ -1,16 +1,59 @@
 import Navbar from "../../components/navbar/navbar"
 import Sidebar from "../../components/sidebar/sidebar"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./new.scss"
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import { serverTimestamp, setDoc, doc } from "firebase/firestore"; 
-import { auth, db } from "../../firebase"
+import { auth, db, storage } from "../../firebase"
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 const New = ({inputs, title}) => {
 
     const [file, setFile] = useState("");
     const [data, setData] = useState({});
+    const [per, setPerc] = useState(null);
+
+    useEffect(()=>{
+        const uploadFile = ()=>{
+
+            const name = new Date().getTime() + file.name
+            const storageRef = ref(storage, name);
+
+            const uploadTask = uploadBytesResumable(storageRef, file);
+
+            uploadTask.on('state_changed', 
+            (snapshot) => {
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                setPerc(progress)
+                console.log('Upload is ' + progress + '% done');
+                switch (snapshot.state) {
+                case 'paused':
+                    console.log('Upload is paused');
+                    break;
+                case 'running':
+                    console.log('Upload is running');
+                    break;
+                default:
+                    break;
+                }
+            }, 
+            (error) => {
+                // Handle unsuccessful uploads
+                console.log('ERROR', error);
+            }, 
+            () => {
+                // Handle successful uploads on complete
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    setData((prev)=>({...prev, 'Profile Photo':downloadURL})
+                    )
+                });
+            }
+            );
+
+        }
+        file && uploadFile();
+    },[file])
 
     const handleInput = (e) =>{
         const id = e.target.id;
@@ -25,10 +68,10 @@ const New = ({inputs, title}) => {
         e.preventDefault();
 
         try {
-            const response = await createUserWithEmailAndPassword(auth, data.email, data.password);
+            const response = await createUserWithEmailAndPassword(auth, data.Email, data.Password);
             const docRef = await setDoc(doc(db, "Users", response.user.uid), {
               ...data,
-              timeStamp: serverTimestamp()
+              DateCreated: serverTimestamp()
             });
           
             console.log("Document written with ID: ", docRef.id);
@@ -63,7 +106,7 @@ const New = ({inputs, title}) => {
                                 <input id={input.id} type={input.type} placeholder={input.placeholder} onChange={handleInput} />
                             </div>
                             ))}
-                            <button type="submit">Save</button>
+                            <button disabled={per !== null && per < 100} type="submit">Save</button>
                         </form>
                     </div>
                 </div>
