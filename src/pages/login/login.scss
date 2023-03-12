@@ -1,0 +1,38 @@
+.login{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #dcf3fd;
+
+    form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+        padding: 10px;
+    }
+
+    input{
+        width: 200px;
+        height: 40px;
+        margin: 20px;
+    }
+
+    button{
+        width: 200px;
+        height: 30px;
+        border: none;
+        background-color: #00002e;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    span{
+        font-size: 15px;
+        color: red;
+        margin-top: 20px;
+    }
+}
