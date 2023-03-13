@@ -7,12 +7,14 @@ import { serverTimestamp, setDoc, doc } from "firebase/firestore";
 import { auth, db, storage } from "../../firebase"
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { useNavigate } from "react-router-dom";
 
 const New = ({inputs, title}) => {
 
     const [file, setFile] = useState("");
     const [data, setData] = useState({});
     const [per, setPerc] = useState(null);
+    const  navigate = useNavigate();
 
     useEffect(()=>{
         const uploadFile = ()=>{
@@ -62,8 +64,6 @@ const New = ({inputs, title}) => {
         setData({...data, [id]:value});
     };
 
-    console.log(data);
-
     const handleAdd = async (e) => {
         e.preventDefault();
 
@@ -71,8 +71,10 @@ const New = ({inputs, title}) => {
             const response = await createUserWithEmailAndPassword(auth, data.Email, data.Password);
             const docRef = await setDoc(doc(db, "Users", response.user.uid), {
               ...data,
-              DateCreated: serverTimestamp()
+              DateCreated: serverTimestamp(),
+              Status: "inactive",
             });
+            navigate(-1);
           
             console.log("Document written with ID: ", docRef.id);
           } catch (e) {
