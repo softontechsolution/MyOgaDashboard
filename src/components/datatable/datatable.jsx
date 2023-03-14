@@ -3,7 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { userColumns } from "../../datatablesource";
 import { Link } from "react-router-dom"
 import { useEffect, useState } from 'react';
-import { collection, getDocs, deleteDoc, doc, onSnapshot } from "firebase/firestore";
+import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
 import { db } from './../../firebase';
 
 const Datatable = () => {
@@ -31,7 +31,7 @@ const Datatable = () => {
     const unsub = onSnapshot(collection(db, "Users"), (snapShot) => {
       let list = [];
       snapShot.docs.forEach(doc => {
-        list.push({id:doc.id, ...doc.data()});
+        list.push({ id: doc.id, ...doc.data() });
       });
       setData(list);
     }, (error) => {
@@ -41,22 +41,22 @@ const Datatable = () => {
     return () => {
       unsub();
     }
-  },[]);
-  
-  const handleDelete = async (id) =>{
-    try{
+  }, []);
+
+  const handleDelete = async (id) => {
+    try {
       await deleteDoc(doc(db, "Users", id));
-      setData(data.filter(item =>item.id !== id));
-    }catch(erre){
-      console.log(erre); 
+      setData(data.filter(item => item.id !== id));
+    } catch (erre) {
+      console.log(erre);
     }
   }
 
   const actionColumn = [{
-    field: "action", headerName: "Action", Width: 200, renderCell:(params)=>{
+    field: "action", headerName: "Action", Width: 200, renderCell: (params) => {
       return (
         <div className="cellAction">
-          <Link to="/users/test" style={{textDecoration: "none"}}>
+          <Link to="/users/test" style={{ textDecoration: "none" }}>
             <div className="viewButton">View</div>
           </Link>
           <div className="deleteButton" onClick={() => handleDelete(params.row.id)}>Delete</div>
@@ -69,11 +69,11 @@ const Datatable = () => {
     <div className='datatable'>
       <div className="datatableTitle">
         Add New User
-        <Link to="/users/new" style={{textDecoration: "none"}} className="link">
+        <Link to="/users/new" style={{ textDecoration: "none" }} className="link">
           Add New
         </Link>
       </div>
-        <DataGrid
+      <DataGrid
         className="datagrid"
         rows={data}
         columns={userColumns.concat(actionColumn)}

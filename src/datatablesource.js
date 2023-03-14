@@ -36,6 +36,6 @@ export const userColumns = [
         }
     },
     {
-        field: "DateCreated", headerName:"Date Created", width: 150,
+        field: "timeStamp", headerName:"Date Created", width: 150,
     },
 ];
