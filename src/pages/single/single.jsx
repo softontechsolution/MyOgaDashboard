@@ -1,15 +1,24 @@
 import "./single.scss"
-import Sidebar from "../../components/sidebar/sidebar"
-import Navbar from "../../components/navbar/navbar"
-import Chart from "../../components/chart/chart"
-import TableJ from "../../components/table/table"
+import Sidebar from "../../components/sidebar/sidebar";
+import Navbar from "../../components/navbar/navbar";
+import Chart from "../../components/chart/chart";
+import TableJ from "../../components/table/table";
+import { useLocation } from "react-router-dom";
+import { useEffect } from 'react';
 
-const Single = () => {
+const Single = (props) => {
+    const location = useLocation();
+    console.log(location);
+    const userID = location.state.id;
+
+    useEffect(() => {
+
+    })
     return (
         <div className="single">
-            <Sidebar/>
+            <Sidebar />
             <div className="singleContainer">
-                <Navbar/>
+                <Navbar />
                 <div className="top">
                     <div className="left">
                         <div className="editButton">Edit</div>
@@ -42,12 +51,12 @@ const Single = () => {
                         </div>
                     </div>
                     <div className="right">
-                        <Chart aspect={3/1} title="User Usage (Last 6 Months)"/>
+                        <Chart aspect={3 / 1} title="User Usage (Last 6 Months)" />
                     </div>
                 </div>
                 <div className="bottom">
                     <h1 className="title">Last Bookings</h1>
-                    <TableJ/>
+                    <TableJ />
                 </div>
             </div>
         </div>

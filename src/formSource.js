@@ -25,12 +25,6 @@ export const userInputs = [
         placeholder:"Minimum of 8 characters",
     },
     {
-        id: 5,
-        label: "Confirm Password",
-        type:"text",
-        placeholder:"re-enter password",
-    },
-    {
         id: "Address",
         label: "Home Address",
         type:"text",

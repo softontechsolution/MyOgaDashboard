@@ -1,13 +1,14 @@
 import "./datatable.scss"
 import { DataGrid } from '@mui/x-data-grid';
 import { userColumns } from "../../datatablesource";
-import { Link } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { useEffect, useState } from 'react';
 import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
 import { db } from './../../firebase';
 
 const Datatable = () => {
 
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -33,6 +34,7 @@ const Datatable = () => {
       snapShot.docs.forEach(doc => {
         list.push({ id: doc.id, ...doc.data() });
       });
+      console.log(list);
       setData(list);
     }, (error) => {
       console.log(error);
@@ -56,11 +58,9 @@ const Datatable = () => {
     field: "action", headerName: "Action", Width: 200, renderCell: (params) => {
       return (
         <div className="cellAction">
-          <Link to="/users/test" style={{ textDecoration: "none" }}>
-            <div className="viewButton">View</div>
-          </Link>
+          <div className="viewButton" onClick={() => navigate(`/users/${params.id}`, { replace: true, state: { id: params.id } })}>View</div>
           <div className="deleteButton" onClick={() => handleDelete(params.row.id)}>Delete</div>
-        </div>
+        </div >
       )
     }
   }]
