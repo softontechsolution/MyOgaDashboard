@@ -1,3 +1,8 @@
 .singleBooking{
-    
+    display: flex;
+    width: 100%;
+
+    .singleBookingContainer{
+        flex: 6;
+    }
 }

@@ -1,9 +1,16 @@
 import "./bookingList.scss";
+import Sidebar from '../../components/sidebar/sidebar';
+import Navbar from '../../components/navbar/navbar';
 
-const bookingList = () => {
+const BookingList = () => {
     return (
-        <div className='bookingList'>bookingList</div>
+        <div className='bookingList'>
+            <Sidebar />
+            <div className="bookingListContainer">
+                <Navbar />
+            </div>
+        </div>
     )
 }
 
-export default bookingList
+export default BookingList

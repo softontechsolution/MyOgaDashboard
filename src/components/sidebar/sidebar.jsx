@@ -11,13 +11,25 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import LogoutIcon from '@mui/icons-material/Logout';
 import EmojiTransportationIcon from '@mui/icons-material/EmojiTransportation';
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useContext } from "react";
 import { DarkModeContext } from "../../context/darkModeContext";
+import { auth } from './../../firebase';
+import { signOut } from "firebase/auth";
 
 const Sidebar = () => {
 
     const { dispatch } = useContext(DarkModeContext)
+    const navigate = useNavigate();
+
+    const handleSignOut = () => {
+        signOut(auth).then(() => {
+            // Sign-out successful.
+            navigate('./Login')
+        }).catch((error) => {
+            // An error happened.
+        });
+    }
 
     return (
         <div className="sidebar">
@@ -86,7 +98,7 @@ const Sidebar = () => {
                         <PermIdentityIcon className="icon" />
                         <span>Profile</span>
                     </li>
-                    <li>
+                    <li onClick={() => handleSignOut()}>
                         <LogoutIcon className="icon" />
                         <span>Logout</span>
                     </li>
@@ -96,7 +108,7 @@ const Sidebar = () => {
                 <div className="colorOption" onClick={() => dispatch({ type: "LIGHT" })}></div>
                 <div className="colorOption" onClick={() => dispatch({ type: "DARK" })}></div>
             </div>
-        </div>
+        </div >
     )
 }
 

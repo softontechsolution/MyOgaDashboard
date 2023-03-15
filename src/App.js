@@ -18,6 +18,11 @@ import { useContext } from "react";
 import { DarkModeContext } from './context/darkModeContext';
 import { AuthContext } from "./context/authContext";
 import CompanyList from './pages/list/companyList';
+import NewCompany from './pages/new/newCompany';
+import SingleCompany from './pages/single/singleCompany';
+import BookingList from './pages/list/bookingList';
+import NewBooking from './pages/new/newBooking';
+import SingleBooking from './pages/single/singleBooking';
 
 
 function App() {
@@ -90,13 +95,13 @@ function App() {
               />
               <Route path=":companyId" element={
                   <RequireAuth>
-                    <Single/>
+                    <SingleCompany/>
                   </RequireAuth>
                 }
               />
               <Route path="new" element={
                   <RequireAuth>
-                    <New inputs={userInputs} title="Add New Company"/>
+                    <NewCompany/>
                   </RequireAuth>
                 }
               />
@@ -104,19 +109,19 @@ function App() {
             <Route path="bookings">
               <Route index element={
                   <RequireAuth>
-                    <List/>
+                    <BookingList/>
                   </RequireAuth>
                 }
               />
               <Route path=":bookingId" element={
                   <RequireAuth>
-                    <Single/>
+                    <SingleBooking/>
                   </RequireAuth>
                 }
               />
               <Route path="new" element={
                   <RequireAuth>
-                    <New inputs={userInputs} title="Add New Booking"/>
+                    <NewBooking/>
                   </RequireAuth>
                 }
               />
