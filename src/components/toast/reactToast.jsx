@@ -1,9 +1,24 @@
 import "./reactToast.scss"
+import { forwardRef, useImperativeHandle, useState } from 'react';
 
-const reactToast = () => {
+const ReactToast = ({ timeout = 1500 }, refs) => {
+
+    const [show, setShow] = useState(false);
+    const [toastMsg, setToastMsg] = useState('');
+
+    useImperativeHandle(refs, () => ({
+        showToast(msg = '') {
+            setShow(true)
+            setToastMsg(msg)
+            setTimeout(() => {
+                setShow(false)
+            }, timeout)
+        },
+    }))
+
     return (
-        <div className='toast'>reactToast</div>
+        <div className={`toast ${show ? "show" : ""}`}>{toastMsg}</div>
     )
 }
 
-export default reactToast
+export default forwardRef(ReactToast)
