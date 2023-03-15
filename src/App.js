@@ -1,7 +1,10 @@
 import Home from "./pages/home/home";
 import Login from "./pages/login/login";
-import List from "./pages/list/list";
 import Single from "./pages/single/single";
+import SingleDriver from "./pages/single/singleDriver";
+import List from "./pages/list/list";
+import DriversList from "./pages/list/driversList";
+import NewDriver from './pages/new/newDriver';
 import New from "./pages/new/new";
 import {
   BrowserRouter,
@@ -14,6 +17,7 @@ import "./style/dark.scss"
 import { useContext } from "react";
 import { DarkModeContext } from './context/darkModeContext';
 import { AuthContext } from "./context/authContext";
+import CompanyList from './pages/list/companyList';
 
 
 function App() {
@@ -60,19 +64,19 @@ function App() {
             <Route path="drivers">
               <Route index element={
                   <RequireAuth>
-                      <List/>
+                      <DriversList />
                   </RequireAuth>
                 }
               />
               <Route path=":driverId" element={
                   <RequireAuth>
-                    <Single/>
+                    <SingleDriver/>
                   </RequireAuth>
                 }
               />
               <Route path="new" element={
                   <RequireAuth>
-                    <New inputs={userInputs} title="Add New Driver"/>
+                    <NewDriver/>
                   </RequireAuth>
                 }
               />
@@ -80,7 +84,7 @@ function App() {
             <Route path="company">
               <Route index element={
                   <RequireAuth>
-                    <List/>
+                    <CompanyList/>
                   </RequireAuth>
                 }
               />

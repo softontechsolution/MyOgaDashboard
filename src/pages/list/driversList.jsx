@@ -1,9 +1,16 @@
 import "./driversList.scss";
+import Sidebar from "../../components/sidebar/sidebar";
+import Navbar from "../../components/navbar/navbar";
 
-const driversList = () => {
+const DriversList = () => {
     return (
-        <div className='driversList'>driversList</div>
+        <div className='driversList'>
+            <Sidebar />
+            <div className="driversListContainer">
+                <Navbar />
+            </div>
+        </div>
     )
 }
 
-export default driversList
+export default DriversList

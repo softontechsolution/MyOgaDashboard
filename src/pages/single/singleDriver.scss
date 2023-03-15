@@ -1,3 +1,8 @@
 .singleDriver{
-    
+    display: flex;
+    width: 100%;
+
+    .singleDriverContainer{
+        flex: 6;
+    }
 }

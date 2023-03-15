@@ -17,81 +17,84 @@ import { DarkModeContext } from "../../context/darkModeContext";
 
 const Sidebar = () => {
 
-    const {dispatch} = useContext(DarkModeContext)
+    const { dispatch } = useContext(DarkModeContext)
 
     return (
         <div className="sidebar">
             <div className="top">
-                <Link to="/" style={{textDecoration: "none"}}>
+                <Link to="/" style={{ textDecoration: "none" }}>
                     <span className="logo">My Oga</span>
                 </Link>
             </div>
-            <hr/>
+            <hr />
             <div className="center">
                 <ul>
                     <p className="title">MAIN</p>
-                    <Link to="/" style={{textDecoration: "none"}}>
+                    <Link to="/" style={{ textDecoration: "none" }}>
                         <li>
-                            <DashboardIcon className="icon"/>
+                            <DashboardIcon className="icon" />
                             <span>Dashboard</span>
                         </li>
                     </Link>
                     <p className="title">LIST</p>
-                    <Link to="/users" style={{textDecoration: "none"}}>
+                    <Link to="/users" style={{ textDecoration: "none" }}>
                         <li>
-                            <AccountCircleIcon className="icon"/>
+                            <AccountCircleIcon className="icon" />
                             <span>Users</span>
                         </li>
                     </Link>
-                    <Link to="/drivers" style={{textDecoration: "none"}}>
+                    <Link to="/drivers" style={{ textDecoration: "none" }}>
                         <li>
-                            <DirectionsCarIcon className="icon"/>
+                            <DirectionsCarIcon className="icon" />
                             <span>Drivers</span>
                         </li>
                     </Link>
-                    
+                    <Link to="/company" style={{ textDecoration: "none" }}>
+                        <li>
+                            <EmojiTransportationIcon className="icon" />
+                            <span>Companies</span>
+                        </li>
+                    </Link>
+                    <Link to="/bookings" style={{ textDecoration: "none" }}>
+                        <li>
+                            <LibraryBooksIcon className="icon" />
+                            <span>Bookings</span>
+                        </li>
+                    </Link>
                     <li>
-                        <EmojiTransportationIcon className="icon"/>
-                        <span>Companies</span>
-                    </li>
-                    <li>
-                        <LibraryBooksIcon className="icon"/>
-                        <span>Bookings</span>
-                    </li>
-                    <li>
-                        <GpsFixedIcon className="icon"/>
+                        <GpsFixedIcon className="icon" />
                         <span>Order Status</span>
                     </li>
                     <li>
-                        <DonutSmallIcon className="icon"/>
+                        <DonutSmallIcon className="icon" />
                         <span>Earnings</span>
                     </li>
                     <p className="title">USEFUL LINKS</p>
                     <li>
-                        <CircleNotificationsIcon className="icon"/>
+                        <CircleNotificationsIcon className="icon" />
                         <span>Notifications</span>
                     </li>
                     <li>
-                        <CreditScoreIcon className="icon"/>
+                        <CreditScoreIcon className="icon" />
                         <span>Payments</span>
                     </li>
                     <li>
-                        <SettingsIcon className="icon"/>
+                        <SettingsIcon className="icon" />
                         <span>Settings</span>
                     </li>
                     <li>
-                        <PermIdentityIcon className="icon"/>
+                        <PermIdentityIcon className="icon" />
                         <span>Profile</span>
                     </li>
                     <li>
-                        <LogoutIcon className="icon"/>
+                        <LogoutIcon className="icon" />
                         <span>Logout</span>
                     </li>
                 </ul>
             </div>
             <div className="bottom">
-                <div className="colorOption" onClick={() => dispatch({type:"LIGHT"})}></div>
-                <div className="colorOption" onClick={() => dispatch({type:"DARK"})}></div>
+                <div className="colorOption" onClick={() => dispatch({ type: "LIGHT" })}></div>
+                <div className="colorOption" onClick={() => dispatch({ type: "DARK" })}></div>
             </div>
         </div>
     )
