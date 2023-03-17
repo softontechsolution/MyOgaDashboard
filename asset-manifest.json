@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/MyOgaDashboard/static/css/main.e5986172.css",
-    "main.js": "/MyOgaDashboard/static/js/main.e38e33b6.js",
+    "main.js": "/MyOgaDashboard/static/js/main.6d9b511f.js",
     "index.html": "/MyOgaDashboard/index.html",
     "main.e5986172.css.map": "/MyOgaDashboard/static/css/main.e5986172.css.map",
-    "main.e38e33b6.js.map": "/MyOgaDashboard/static/js/main.e38e33b6.js.map"
+    "main.6d9b511f.js.map": "/MyOgaDashboard/static/js/main.6d9b511f.js.map"
   },
   "entrypoints": [
     "static/css/main.e5986172.css",
-    "static/js/main.e38e33b6.js"
+    "static/js/main.6d9b511f.js"
   ]
 }
