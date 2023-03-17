@@ -36,9 +36,9 @@ function App() {
 
   return (
     <div className={ darkMode ? "app dark": "app"}>
-      <BrowserRouter>
+      <BrowserRouter basename="/MyOgaDashboard">
         <Routes>
-          <Route path="/">
+          <Route path="/MyOgaDashboard">
             <Route path ="login" element={<Login />} />
             <Route index element={
                 <RequireAuth>
