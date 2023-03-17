@@ -10,13 +10,12 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  Navigate,
 } from "react-router-dom";
 import { userInputs } from "./formSource";
 import "./style/dark.scss"
 import { useContext } from "react";
 import { DarkModeContext } from './context/darkModeContext';
-import { AuthContext } from "./context/authContext";
+//import { AuthContext } from "./context/authContext";
 import CompanyList from './pages/list/companyList';
 import NewCompany from './pages/new/newCompany';
 import SingleCompany from './pages/single/singleCompany';
@@ -28,101 +27,101 @@ import SingleBooking from './pages/single/singleBooking';
 function App() {
 
   const {darkMode} = useContext(DarkModeContext)
-  const {currentUser} = useContext(AuthContext)
+  //const {currentUser} = useContext(AuthContext)
 
-  const RequireAuth = ({children}) => {
-    return currentUser ? (children) : <Navigate to="/login"/>;
-  }
+  //const RequireAuth = ({children}) => {
+  //  return currentUser ? (children) : <Navigate to="/login"/>;
+  //}
 
   return (
     <div className={ darkMode ? "app dark": "app"}>
-      <BrowserRouter>
+      <BrowserRouter basename="/MyOgaDashboard">
         <Routes>
-          <Route path="/">
+          <Route path="/MyOgaDashboard">
             <Route path ="login" element={<Login />} />
             <Route index element={
-                <RequireAuth>
+                //<RequireAuth>
                   <Home />
-                </RequireAuth>
+                //</RequireAuth>
               } 
             />
             <Route path="users">
               <Route index element={
-                  <RequireAuth>
+                  //<RequireAuth>
                     <List/>
-                  </RequireAuth>
+                  //</RequireAuth>
                 }
               />
               <Route path=":userId" element={
-                  <RequireAuth>
+                  //<RequireAuth>
                     <Single/>
-                  </RequireAuth>
+                  //</RequireAuth>
                 }
               />
               <Route path="new" element={
-                  <RequireAuth>
+                  //<RequireAuth>
                     <New inputs={userInputs} title="Add New User"/>
-                  </RequireAuth>
+                  //</RequireAuth>
                 }
               />
             </Route>
             <Route path="drivers">
               <Route index element={
-                  <RequireAuth>
+                  //<RequireAuth>
                       <DriversList />
-                  </RequireAuth>
+                  //</RequireAuth>
                 }
               />
               <Route path=":driverId" element={
-                  <RequireAuth>
+                  //<RequireAuth>
                     <SingleDriver/>
-                  </RequireAuth>
+                  //</RequireAuth>
                 }
               />
               <Route path="new" element={
-                  <RequireAuth>
+                  //<RequireAuth>
                     <NewDriver/>
-                  </RequireAuth>
+                  //</RequireAuth>
                 }
               />
             </Route>
             <Route path="company">
               <Route index element={
-                  <RequireAuth>
+                  //<RequireAuth>
                     <CompanyList/>
-                  </RequireAuth>
+                  //</RequireAuth>
                 }
               />
               <Route path=":companyId" element={
-                  <RequireAuth>
+                  //<RequireAuth>
                     <SingleCompany/>
-                  </RequireAuth>
+                  //</RequireAuth>
                 }
               />
               <Route path="new" element={
-                  <RequireAuth>
+                  //<RequireAuth>
                     <NewCompany/>
-                  </RequireAuth>
+                  //</RequireAuth>
                 }
               />
             </Route>
             <Route path="bookings">
               <Route index element={
-                  <RequireAuth>
+                  //<RequireAuth>
                     <BookingList/>
-                  </RequireAuth>
+                  //</RequireAuth>
                 }
               />
               <Route path=":bookingId" element={
-                  <RequireAuth>
+                  //<RequireAuth>
                     <SingleBooking/>
-                  </RequireAuth>
+                  //</RequireAuth>
                 }
               />
               <Route path="new" element={
-                  <RequireAuth>
+                  //<RequireAuth>
                     <NewBooking/>
-                  </RequireAuth>
+                  //</RequireAuth>
                 }
               />
             </Route>
