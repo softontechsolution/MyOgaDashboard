@@ -7,7 +7,7 @@ import DriversList from "./pages/list/driversList";
 import NewDriver from './pages/new/newDriver';
 import New from "./pages/new/new";
 import {
-  BrowserRouter,
+  HashRouter,
   Routes,
   Route,
 } from "react-router-dom";
@@ -35,7 +35,7 @@ function App() {
 
   return (
     <div className={ darkMode ? "app dark": "app"}>
-      <BrowserRouter basename="/MyOgaDashboard">
+      <HashRouter basename="/MyOgaDashboard">
         <Routes>
           <Route path="/MyOgaDashboard">
             <Route path ="login" element={<Login />} />
@@ -127,7 +127,7 @@ function App() {
             </Route>
           </Route>
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
