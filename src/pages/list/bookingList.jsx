@@ -1,6 +1,7 @@
 import "./bookingList.scss";
 import Sidebar from '../../components/sidebar/sidebar';
 import Navbar from '../../components/navbar/navbar';
+import BookingDatatable from '../../components/datatable/bookingDatatable';
 
 const BookingList = () => {
     return (
@@ -8,6 +9,7 @@ const BookingList = () => {
             <Sidebar />
             <div className="bookingListContainer">
                 <Navbar />
+                <BookingDatatable />
             </div>
         </div>
     )
