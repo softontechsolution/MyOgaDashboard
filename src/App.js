@@ -35,7 +35,7 @@ function App() {
 
   return (
     <div className={ darkMode ? "app dark": "app"}>
-      <HashRouter basename="/MyOgaDashboard">
+      <HashRouter base="/MyOgaDashboard">
         <Routes>
           <Route path="/MyOgaDashboard">
             <Route path ="login" element={<Login />} />
