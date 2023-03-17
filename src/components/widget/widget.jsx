@@ -8,8 +8,10 @@ import EmojiTransportationIcon from '@mui/icons-material/EmojiTransportation';
 import { useEffect, useState } from "react";
 import { collection, getDocs, where, query } from "firebase/firestore";
 import { db } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 
 const Widget = ({ type }) => {
+    const navigate = useNavigate();
     const [amount, setAmount] = useState(null);
     const [diff, setDiff] = useState(null);
     let data;
@@ -19,6 +21,7 @@ const Widget = ({ type }) => {
             data = {
                 title: "USERS",
                 isMoney: false,
+                nav: './users',
                 link: "see all users",
                 query: "Users",
                 icon: (
@@ -35,8 +38,9 @@ const Widget = ({ type }) => {
 
         case "driver":
             data = {
-                title: "DDRIVERS",
+                title: "DRIVERS",
                 isMoney: false,
+                nav: './drivers',
                 link: "see all drivers",
                 query: "Drivers",
                 icon: (
@@ -55,6 +59,7 @@ const Widget = ({ type }) => {
             data = {
                 title: "BOOKINGS",
                 isMoney: false,
+                nav: './booking',
                 link: "see all bookings",
                 query: "Bookings",
                 icon: (
@@ -73,6 +78,7 @@ const Widget = ({ type }) => {
             data = {
                 title: "COMPANIES",
                 isMoney: false,
+                nav: './company',
                 link: "see all companies",
                 query: "Companies",
                 icon: (
@@ -115,7 +121,7 @@ const Widget = ({ type }) => {
                 <span className="counter">
                     {data.isMoney && "NGN"} {amount}
                 </span>
-                <span className="link">{data.link}</span>
+                <span className="link" onClick={() => navigate(data.nav)}>{data.link}</span>
             </div>
             <div className="right">
                 <div className={`percentage ${diff < 0 ? "negative" : "positive"}`}>
