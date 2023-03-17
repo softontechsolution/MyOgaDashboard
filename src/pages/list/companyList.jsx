@@ -1,6 +1,7 @@
 import "./companyList.scss"
 import Sidebar from '../../components/sidebar/sidebar';
 import Navbar from '../../components/navbar/navbar';
+import CompanyDatatable from '../../components/datatable/companyDatatable';
 
 const CompanyList = () => {
     return (
@@ -8,6 +9,7 @@ const CompanyList = () => {
             <Sidebar />
             <div className="companyListContainer">
                 <Navbar />
+                <CompanyDatatable />
             </div>
         </div>
     )

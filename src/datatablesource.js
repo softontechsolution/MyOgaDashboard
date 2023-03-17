@@ -114,8 +114,8 @@ export const companyColumns = [
         field: "CompanyName", headerName: "Company Name", width: 200, renderCell: (params)=>{
             return (
                 <div className="cellWithImg">
-                    <img className="cellImg" src={params.row['Profile Photo']} alt=" avatar "/>
-                    {params.row.FullName}
+                    <img className="cellImg" src="https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg" alt=" avatar "/>
+                    {params.row.CompanyName}
                 </div>
             )
         }
@@ -351,46 +351,46 @@ export const driversRows = [
 export const companyRows = [
     {
         id: "12DFidCDEZ",
-        CompanyName: "Jane Lawrence",
+        CompanyName: "Kelvent Logistics",
         Phone: "+2349023453223",
-        Email: "none",
+        Email: "kelvent@gmail.com",
         DateOfRegistration: "02 March 2023",
         Address: "no 43 Street gwags",
-        Document: "new york street, utako",
-        timeStamp: "12km",
+        Document: "CAC DOC",
+        timeStamp: "12 JAN. 2021",
         Status: "Pending",
     },
     {
         id: "12DFGHHCDEZ",
-        CompanyName: "Jane Lawrence",
+        CompanyName: "Kelvent Logistics",
         Phone: "+2349023453223",
-        Email: "none",
+        Email: "kelvent@gmail.com",
         DateOfRegistration: "02 March 2023",
         Address: "no 43 Street gwags",
-        Document: "new york street, utako",
-        timeStamp: "12km",
+        Document: "CAC DOC",
+        timeStamp: "12 JAN. 2021",
         Status: "Pending",
     },
     {
         id: "12DFDFKSZ",
-        CompanyName: "Jane Lawrence",
+        CompanyName: "Kelvent Logistics",
         Phone: "+2349023453223",
-        Email: "none",
+        Email: "kelvent@gmail.com",
         DateOfRegistration: "02 March 2023",
         Address: "no 43 Street gwags",
-        Document: "new york street, utako",
-        timeStamp: "12km",
+        Document: "CAC DOC",
+        timeStamp: "12 JAN. 2021",
         Status: "Pending",
     },
     {
         id: "12DFLPZCDEZ",
-        CompanyName: "Jane Lawrence",
+        CompanyName: "Kelvent Logistics",
         Phone: "+2349023453223",
-        Email: "none",
+        Email: "kelvent@gmail.com",
         DateOfRegistration: "02 March 2023",
         Address: "no 43 Street gwags",
-        Document: "new york street, utako",
-        timeStamp: "12km",
+        Document: "CAC DOC",
+        timeStamp: "12 JAN. 2021",
         Status: "Pending",
     },
 ];
