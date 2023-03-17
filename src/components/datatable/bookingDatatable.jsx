@@ -18,7 +18,7 @@ const BookingDatatable = () => {
         field: "action", headerName: "Action", Width: 250, renderCell: (params) => {
             return (
                 <div className="cellAction">
-                    <div className="viewButton" onClick={() => navigate(`/booking/${params.id}`, { replace: true, state: { id: params.id } })}>View</div>
+                    <div className="viewButton" onClick={() => navigate(`/bookings/${params.id}`, { replace: true, state: { id: params.id } })}>View</div>
                     <div className="deleteButton" onClick={() => handleDelete(params.row.id)}>Delete</div>
                 </div >
             )
@@ -28,8 +28,8 @@ const BookingDatatable = () => {
     return (
         <div className='datatable'>
             <div className="datatableTitle">
-                Add New Company
-                <Link to="/booking/new" style={{ textDecoration: "none" }} className="link">
+                Add New Booking
+                <Link to="/bookings/new" style={{ textDecoration: "none" }} className="link">
                     Add New
                 </Link>
             </div>
