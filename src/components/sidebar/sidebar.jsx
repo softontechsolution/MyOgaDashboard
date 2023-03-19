@@ -14,20 +14,25 @@ import EmojiTransportationIcon from '@mui/icons-material/EmojiTransportation';
 import { Link, useNavigate } from "react-router-dom"
 import { useContext } from "react";
 import { DarkModeContext } from "../../context/darkModeContext";
+import { AuthContext } from "../../context/authContext";
 import { auth } from './../../firebase';
 import { signOut } from "firebase/auth";
 
 const Sidebar = () => {
 
-    const { dispatch } = useContext(DarkModeContext)
+    const { dispatch } = useContext(DarkModeContext, AuthContext);
+    //const { dispatchL } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleSignOut = () => {
         signOut(auth).then(() => {
             // Sign-out successful.
-            <navigate to="/login" />;
+            localStorage.removeItem('user');
+            dispatch({ type: "LOGOUT" });
+            navigate("/login");
         }).catch((error) => {
             // An error happened.
+            console.log(error);
         });
     }
 
@@ -98,9 +103,11 @@ const Sidebar = () => {
                         <PermIdentityIcon className="icon" />
                         <span>Profile</span>
                     </li>
-                    <li onClick={() => handleSignOut()}>
-                        <LogoutIcon className="icon" />
-                        <span>Logout</span>
+                    <li>
+                        <div onClick={() => handleSignOut()}>
+                            <LogoutIcon className="icon" />
+                            <span>Logout</span>
+                        </div>
                     </li>
                 </ul>
             </div>

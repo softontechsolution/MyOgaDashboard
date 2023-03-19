@@ -10,7 +10,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  useNavigate,
+  Navigate,
 } from "react-router-dom";
 import { userInputs } from "./formSource";
 import "./style/dark.scss"
@@ -29,7 +29,6 @@ function App() {
 
   const {darkMode} = useContext(DarkModeContext)
   const {currentUser} = useContext(AuthContext)
-  const Navigate = useNavigate();
 
   const RequireAuth = ({children}) => {
     return currentUser ? (children) : <Navigate to="/login"/>;

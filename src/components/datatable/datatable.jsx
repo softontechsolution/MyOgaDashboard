@@ -54,7 +54,7 @@ const Datatable = () => {
   }
 
   const actionColumn = [{
-    field: "action", headerName: "Action", Width: 200, renderCell: (params) => {
+    field: "action", headerName: "Action", Width: 280, renderCell: (params) => {
       return (
         <div className="cellAction">
           <div className="viewButton" onClick={() => navigate(`/users/${params.id}`, { replace: true, state: { id: params.id } })}>View</div>
