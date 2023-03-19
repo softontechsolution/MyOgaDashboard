@@ -2,7 +2,6 @@
   "name": "my-oga-admin",
   "version": "0.1.0",
   "private": false,
-  "homepage": "http://softontechsolution.github.io/MyOgaDashboard",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",

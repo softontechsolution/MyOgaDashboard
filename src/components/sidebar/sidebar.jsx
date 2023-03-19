@@ -25,7 +25,7 @@ const Sidebar = () => {
     const handleSignOut = () => {
         signOut(auth).then(() => {
             // Sign-out successful.
-            navigate('./Login')
+            <navigate to="/login" />;
         }).catch((error) => {
             // An error happened.
         });
