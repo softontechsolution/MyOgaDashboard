@@ -3,7 +3,7 @@ import Sidebar from "../../components/sidebar/sidebar"
 import { useEffect, useState, useRef } from "react";
 import "./new.scss"
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
-import { setDoc, doc, Timestamp } from "firebase/firestore";
+import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { auth, db, storage } from "../../firebase"
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -84,7 +84,7 @@ const New = ({ inputs, title }) => {
             const response = await createUserWithEmailAndPassword(auth, data.Email, data.Password);
             const docRef = await setDoc(doc(db, "Users", response.user.uid), {
                 ...data,
-                timeStamp: Timestamp,
+                timeStamp: serverTimestamp(),
                 Status: "inactive",
                 'Date Created': new Date().toString(),
             });

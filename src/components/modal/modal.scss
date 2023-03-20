@@ -1,0 +1,102 @@
+.modal{
+    max-width: 600px;
+    width: 400px;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #dcf3fd;
+    -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47); 
+    box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+    padding: 10px;
+
+    .modalLeft{
+        flex: 20%;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        img{
+            object-fit: cover;
+        }
+        .avatar{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+    }
+
+    .modalRight{
+        flex: 80%;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        .closeBtn{
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            height: 20px;
+            width: 20px;
+            cursor: pointer;
+            color: #e290fa;
+        }
+
+        .content{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1rem 2rem;
+
+            .pBtn{
+
+            }
+
+            .sBtn{
+
+            }
+
+            h1{
+
+            }
+
+            p{
+
+            }
+        }
+
+        .btnContainer{
+            display: flex;
+            padding: 1rem 1rem;
+
+            button{
+                width: 100%;
+                margin: .5rem;
+                padding: 16px 0;
+                border: none;
+                color: white;
+            }
+
+            .btnPrimary{
+                background-color: #00002e;
+
+                .bold{
+
+                }
+            }
+
+            .btnOutline{
+                background-color: #e290fa;
+
+                .bold{
+
+                }
+            }
+        }
+    }
+}

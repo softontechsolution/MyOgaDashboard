@@ -6,15 +6,18 @@ import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import ListIcon from '@mui/icons-material/List';
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { DarkModeContext } from "../../context/darkModeContext";
+import Modal from "../modal/Modal";
 
 const Navbar = () => {
 
-    const { dispatch } = useContext(DarkModeContext)
+    const { dispatch } = useContext(DarkModeContext);
+    const [openModal, setOpenModal] = useState(false);
 
     return (
         <div className="navbar">
+            <Modal open={openModal} onClose={() => setOpenModal(false)} />
             <div className="wrapper">
                 <div className="search">
                     <input type="text" placeholder="Search...." />
@@ -39,7 +42,7 @@ const Navbar = () => {
                         <ChatBubbleOutlineIcon className="icon" />
                         <div className="counter">2</div>
                     </div>
-                    <div className="item">
+                    <div className="item" onClick={() => setOpenModal(true)}>
                         <img
                             src="https://images.pexels.com/photos/91224/pexels-photo-91224.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                             alt="cottonbro studio from Pexels"
