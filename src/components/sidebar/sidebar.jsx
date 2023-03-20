@@ -12,32 +12,41 @@ import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import LogoutIcon from '@mui/icons-material/Logout';
 import EmojiTransportationIcon from '@mui/icons-material/EmojiTransportation';
 import { Link, useNavigate } from "react-router-dom"
-import { useContext } from "react";
+import { useContext, useRef, useState } from "react";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { AuthContext } from "../../context/authContext";
 import { auth } from './../../firebase';
 import { signOut } from "firebase/auth";
+import Snakbar from '../snackbar/Snakbar';
 
 const Sidebar = () => {
 
     const { dispatch } = useContext(DarkModeContext, AuthContext);
-    //const { dispatchL } = useContext(AuthContext);
     const navigate = useNavigate();
-
+    const snackbarRef = useRef(null);
+    const [msg, setMsg] = useState('');
+    const [sType, setType] = useState('');
     const handleSignOut = () => {
         signOut(auth).then(() => {
             // Sign-out successful.
             localStorage.removeItem('user');
             dispatch({ type: "LOGOUT" });
+            setMsg("Logged Out Succesfully");
+            setType("success");
+            snackbarRef.current.show();
             navigate("/login");
         }).catch((error) => {
             // An error happened.
             console.log(error);
+            setMsg(error.message);
+            setType("error");
+            snackbarRef.current.show();
         });
     }
 
     return (
         <div className="sidebar">
+            <Snakbar ref={snackbarRef} message={msg} type={sType} />
             <div className="top">
                 <Link to="/" style={{ textDecoration: "none" }}>
                     <span className="logo">My Oga</span>
