@@ -4,7 +4,7 @@ import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
-import Snakbar from '../snackbar/Snakbar';
+import Snakbar from "../../components/snackbar/Snakbar";
 
 const Login = () => {
 
@@ -12,8 +12,8 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const snackbarRef = useRef(null);
-    const [msg, setMsg] = useState('');
-    const [sType, setType] = useState('');
+    const [msg, setMsg] = useState("");
+    const [sType, setType] = useState("");
     const navigate = useNavigate();
 
     const { dispatch } = useContext(AuthContext)

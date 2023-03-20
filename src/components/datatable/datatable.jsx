@@ -2,14 +2,18 @@ import "./datatable.scss"
 import { DataGrid } from '@mui/x-data-grid';
 import { userColumns } from "../../datatablesource";
 import { useNavigate, Link } from "react-router-dom"
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
 import { db } from './../../firebase';
+import Snakbar from "../snackbar/Snakbar";
 
 const Datatable = () => {
 
   const navigate = useNavigate();
   const [data, setData] = useState([]);
+  const snackbarRef = useRef(null);
+  const [msg, setMsg] = useState("");
+  const [sType, setType] = useState("");
 
   useEffect(() => {
     // const fetchData = async () =>{
@@ -35,8 +39,14 @@ const Datatable = () => {
         list.push({ id: doc.id, ...doc.data() });
       });
       setData(list);
+      setMsg(" Displaying Users Information ");
+      setType("success");
+      snackbarRef.current.show();
     }, (error) => {
       console.log(error);
+      setMsg(error.message);
+      setType("error");
+      snackbarRef.current.show();
     });
 
     return () => {
@@ -48,8 +58,14 @@ const Datatable = () => {
     try {
       await deleteDoc(doc(db, "Users", id));
       setData(data.filter(item => item.id !== id));
+      setMsg("User Deleted Succesfully");
+      setType("success");
+      snackbarRef.current.show();
     } catch (erre) {
       console.log(erre);
+      setMsg(erre.message);
+      setType("error");
+      snackbarRef.current.show();
     }
   }
 
@@ -66,6 +82,7 @@ const Datatable = () => {
 
   return (
     <div className='datatable'>
+      <Snakbar ref={snackbarRef} message={msg} type={sType} />
       <div className="datatableTitle">
         Add New User
         <Link to="/users/new" style={{ textDecoration: "none" }} className="link">

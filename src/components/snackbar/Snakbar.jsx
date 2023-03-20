@@ -10,7 +10,7 @@ const Snakbar = forwardRef((props, ref) => {
             setShowSnackbar(true);
             setTimeout(() => {
                 setShowSnackbar(false);
-            }, 3000);
+            }, 5000);
         }
     }));
 
@@ -19,9 +19,10 @@ const Snakbar = forwardRef((props, ref) => {
             id={showSnackbar ? "show" : "hide"}
             style={{
                 backgroundColor: props.type === "success" ? "#00F593" : "#FF0033",
+                color: props.type === "success" ? "#333" : "white",
             }}>
             <div className="symbol">
-                {props.type === "success" ? <h1>&#x2713;</h1> : <h1>&#x2613</h1>}
+                {props.type === "success" ? <h1>&#x2713;</h1> : <h1>&#x2613;</h1>}
             </div>
             <div className="message">
                 {props.message}

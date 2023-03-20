@@ -1,6 +1,6 @@
 import Navbar from "../../components/navbar/navbar"
 import Sidebar from "../../components/sidebar/sidebar"
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./new.scss"
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import { setDoc, doc, Timestamp } from "firebase/firestore";
@@ -8,6 +8,7 @@ import { auth, db, storage } from "../../firebase"
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
+import Snakbar from "../../components/snackbar/Snakbar";
 
 const New = ({ inputs, title }) => {
 
@@ -15,6 +16,9 @@ const New = ({ inputs, title }) => {
     const [data, setData] = useState({});
     const [per, setPerc] = useState(null);
     const navigate = useNavigate();
+    const snackbarRef = useRef(null);
+    const [msg, setMsg] = useState("");
+    const [sType, setType] = useState("");
 
     useEffect(() => {
         const uploadFile = () => {
@@ -31,10 +35,14 @@ const New = ({ inputs, title }) => {
                     console.log('Upload is ' + progress + '% done');
                     switch (snapshot.state) {
                         case 'paused':
-                            console.log('Upload is paused');
+                            setMsg("Upload is Paused");
+                            setType("success");
+                            snackbarRef.current.show();
                             break;
                         case 'running':
-                            console.log('Upload is running');
+                            setMsg("Upload is Running");
+                            setType("success");
+                            snackbarRef.current.show();
                             break;
                         default:
                             break;
@@ -42,7 +50,9 @@ const New = ({ inputs, title }) => {
                 },
                 (error) => {
                     // Handle unsuccessful uploads
-                    console.log('ERROR', error);
+                    setMsg(error.message);
+                    setType("error");
+                    snackbarRef.current.show();
                 },
                 () => {
                     // Handle successful uploads on complete
@@ -50,6 +60,9 @@ const New = ({ inputs, title }) => {
                         setData((prev) => ({ ...prev, 'Profile Photo': downloadURL })
                         )
                     });
+                    setMsg("Upload is Successful");
+                    setType("success");
+                    snackbarRef.current.show();
                 }
             );
 
@@ -75,11 +88,17 @@ const New = ({ inputs, title }) => {
                 Status: "inactive",
                 'Date Created': new Date().toString(),
             });
+            setMsg("User Added Successfully");
+            setType("success");
+            snackbarRef.current.show();
             navigate(-1);
 
             console.log("Document written with ID: ", docRef.id);
         } catch (e) {
             console.error("Error adding document: ", e);
+            setMsg(e.message);
+            setType("error");
+            snackbarRef.current.show();
         }
 
     }
@@ -90,6 +109,7 @@ const New = ({ inputs, title }) => {
             <div className="newContainer">
                 <Navbar />
                 <div className="top">
+                    <Snakbar ref={snackbarRef} message={msg} type={sType} />
                     <h1 className="titleHading">{title}</h1>
                 </div>
                 <div className="bottom">
