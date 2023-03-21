@@ -164,15 +164,15 @@ export const companyColumns = [
     },
 ];
 export const bookingColumns = [
-    { field: 'id', headerName: 'ID', width: 150 },
+    { field: 'id', headerName: 'ID', width: 100 },
     {
-        field: "Booking Number", headerName:"Cusomer Name", width: 200,
+        field: "Booking Number", headerName:"Booking Number", width: 150,
     },
     {
-        field: "Customer Name", headerName:"Cusomer Name", width: 200,
+        field: "Customer Name", headerName:"Cusomer Name", width: 150,
     },
     {
-        field: "Customer Phone", headerName:"Customer Phone Number", width: 150,
+        field: "Customer Phone", headerName:"Customer Phone", width: 150,
     },
     {
         field: 'Customer ID', headerName:"Customer ID", width: 100,
@@ -181,19 +181,19 @@ export const bookingColumns = [
         field: "Driver ID", headerName:"Driver ID", width: 100,
     },
     {
-        field: "PickUp", headerName:"Pick Up Address", width: 150,
+        field: ['PickUp Address'], headerName:"Pick Up Address", width: 150,
     },
     {
-        field: "DropOff", headerName:"Drop Off Address", width: 150,
+        field: ['DropOff Address'], headerName:"Drop Off Address", width: 150,
     },
     {
-        field: "Distance", headerName:"Distance", width: 150,
+        field: "Distance", headerName:"Distance", width: 80,
     },
     {
-        field: "Amount", headerName:"Amount", width: 150,
+        field: "Amount", headerName:"Amount NGN", width: 100,
     },
     {
-        field: "method", headerName:"Payment Method", width: 150,
+        field: "Payment Method", headerName:"Payment Method", width: 150,
     },
     {
         field: "Status", headerName:"Status", width: 100,
@@ -206,7 +206,7 @@ export const bookingColumns = [
         }
     },
     {
-        field: "timeStamp", headerName:"Date Created", width: 150,
+        field: "Date Created", headerName:"Date Created", width: 150,
     },
 ];
 
