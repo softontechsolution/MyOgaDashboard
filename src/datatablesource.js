@@ -43,11 +43,11 @@ export const userColumns = [
 export const driverColumns = [
     { field: 'id', headerName: 'ID', width: 150 },
     {
-        field: "user", headerName: "Driver Name", width: 200, renderCell: (params)=>{
+        field: "FullName", headerName: "Driver Name", width: 200, renderCell: (params)=>{
             return (
                 <div className="cellWithImg">
-                    <img className="cellImg" src="https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg" alt=" avatar "/>
-                    {params.row.user}
+                    <img className="cellImg" src={params.row['Profile Photo']} alt=" avatar "/>
+                    {params.row.FullName}
                 </div>
             )
         }
@@ -59,50 +59,64 @@ export const driverColumns = [
         field: "Phone", headerName:"Phone Number", width: 150,
     },
     {
-        field: "DateOfBirth", headerName:"Date of Birth", width: 100,
+        field: ['Date of Birth'], headerName:"Date of Birth", width: 100,
     },
     {
         field: "Gender", headerName:"Gender", width: 100,
     },
     {
-        field: "Location", headerName:"Location", width: 100,
+        field: "State", headerName:"Location", width: 100,
     },
     {
         field: "Address", headerName:"Address", width: 150,
     },
     {
-        field: "Status", headerName:"Status", width: 100,
+        field: "Online", headerName:"Status", width: 100,
         renderCell:(params)=>{
             return(
-                <div className={`cellWithStatus ${params.row.Status}`}>
-                    {params.row.Status}
+                <div className={`cellWithStatus ${params.row.Online}`}>
+                    {params.row.Online==="1"?"online":"offline"}
                 </div>
             )
         }
     },
     {
         field: "Verified", headerName:"Verification", width: 100,
+        renderCell:(params)=>{
+            return(
+                <div className={`cellWithStatus ${params.row.Verified}`}>
+                    {params.row.Verified==="1"?"verified":"not verified"}
+                </div>
+            )
+        }
     },
     {
         field: "Company", headerName:"Company", width: 150,
     },
     {
-        field: "Document", headerName:"Documents", width: 150,
+        field: "Documents", headerName:"Documents", width: 150,
+        renderCell: (params)=>{
+            return (
+                <div className="cellWithImg">
+                    <img className="cellImg" src={params.row['Documents']} alt=" docs "/>
+                </div>
+            )
+        }
     },
     {
-        field: "VehicleType", headerName:"Vehicle Type", width: 100,
+        field: "Vehicle Type", headerName:"Vehicle Type", width: 100,
     },
     {
-        field: "VehicleMake", headerName:"Vehicle Make", width: 100,
+        field: "Vehicle Make", headerName:"Vehicle Make", width: 100,
     },
     {
-        field: "VehicleColor", headerName:"Vehicle Color", width: 100,
+        field: "Vehicle Color", headerName:"Vehicle Color", width: 100,
     },
     {
-        field: "VehicleYear", headerName:"Vehicle Year", width: 100,
+        field: "Vehicle Year", headerName:"Vehicle Year", width: 100,
     },
     {
-        field: "VehicleNumber", headerName:"Vehicle Number", width: 100,
+        field: "Vehicle Number", headerName:"Vehicle Number", width: 100,
     },
     {
         field: "timeStamp", headerName:"Date Created", width: 150,
@@ -152,16 +166,19 @@ export const companyColumns = [
 export const bookingColumns = [
     { field: 'id', headerName: 'ID', width: 150 },
     {
-        field: "CustomerName", headerName:"Cusomer Name", width: 200,
+        field: "Booking Number", headerName:"Cusomer Name", width: 200,
     },
     {
-        field: "CustomerPhone", headerName:"Customer Phone Number", width: 150,
+        field: "Customer Name", headerName:"Cusomer Name", width: 200,
     },
     {
-        field: 'CustomerID', headerName:"Customer ID", width: 100,
+        field: "Customer Phone", headerName:"Customer Phone Number", width: 150,
     },
     {
-        field: "DriverID", headerName:"Driver ID", width: 100,
+        field: 'Customer ID', headerName:"Customer ID", width: 100,
+    },
+    {
+        field: "Driver ID", headerName:"Driver ID", width: 100,
     },
     {
         field: "PickUp", headerName:"Pick Up Address", width: 150,
@@ -170,10 +187,10 @@ export const bookingColumns = [
         field: "DropOff", headerName:"Drop Off Address", width: 150,
     },
     {
-        field: "distance", headerName:"Distance", width: 150,
+        field: "Distance", headerName:"Distance", width: 150,
     },
     {
-        field: "amount", headerName:"Amount", width: 150,
+        field: "Amount", headerName:"Amount", width: 150,
     },
     {
         field: "method", headerName:"Payment Method", width: 150,

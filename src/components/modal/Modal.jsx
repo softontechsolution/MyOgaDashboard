@@ -1,6 +1,18 @@
 import "./modal.scss";
 
 const Modal = ({ open, onClose }) => {
+
+    // const [myLocalStorageData, setMyLocalStorageData] = useState('');
+
+    // useEffect(() => {
+
+    //     let user = firebase.getAuth
+    //     //logic for getting a value from local storage stored under the key 'key'
+    //     const data = localStorage.getItem('user');
+    //     setMyLocalStorageData(JSON.parse(data));
+    //     console.log(myLocalStorageData);
+    // }, [myLocalStorageData]);
+
     if (!open) return null;
     return (
         <div className="overlay">

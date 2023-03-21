@@ -43,7 +43,6 @@ const Datatable = () => {
       setType("success");
       snackbarRef.current.show();
     }, (error) => {
-      console.log(error);
       setMsg(error.message);
       setType("error");
       snackbarRef.current.show();
