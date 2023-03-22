@@ -60,6 +60,23 @@
             color: goldenrod;
             background-color: rgba(189, 189, 3, 0.103);
         }
+
+        .assignButton{
+            padding: 2px 5px;
+            border-radius: 5px;
+            color: darkblue;
+            border: 1px solid rgba(0, 0, 139, 0.342);
+            cursor: pointer;
+        }
+
+        // button{
+        //     width: 100%;
+        //     margin: .5rem;
+        //     padding: 16px 0;
+        //     border: none;
+        //     color: white;
+        //     background-color: #00002e;
+        // }
     }
 
     .cellAction{

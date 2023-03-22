@@ -56,6 +56,41 @@
             color: goldenrod;
             background-color: rgba(189, 189, 3, 0.103);
         }
+        &.pending{
+            color: goldenrod;
+            background-color: rgba(189, 189, 3, 0.103);
+        }
+    }
+
+    .cellWithVerify{
+        padding: 5px;
+        border-radius: 5px;
+
+        // &.1{
+        //     color: green;
+        //     background-color: rgba(0, 128, 0, 0.151);
+        // }
+
+        // &.0{
+        //     color: goldenrod;
+        //     background-color: rgba(189, 189, 3, 0.103);
+        // }
+
+        .verifyButton{
+            padding: 2px 5px;
+            border-radius: 5px;
+            color: darkblue;
+            border: 1px solid rgba(0, 0, 139, 0.342);
+            cursor: pointer;
+        }
+
+        .verifiedButton{
+            padding: 2px 5px;
+            border-radius: 5px;
+            color: green;
+            border: 1px solid rgba(8, 143, 55, 0.342);
+            cursor: pointer;
+        }
     }
 
     .cellAction{

@@ -84,8 +84,9 @@ export const driverColumns = [
         field: "Verified", headerName:"Verification", width: 100,
         renderCell:(params)=>{
             return(
-                <div className={`cellWithStatus ${params.row.Verified}`}>
+                <div className={`cellWithVerify ${params.row.Verified}`}>
                     {params.row.Verified==="1"?"verified":"not verified"}
+                    {params.row.Verified==="0"?<div className="verifyButton">Verify Driver</div>:<div className="verifiedButton">Verified</div>}
                 </div>
             )
         }
@@ -201,6 +202,7 @@ export const bookingColumns = [
             return(
                 <div className={`cellWithStatus ${params.row.Status}`}>
                     {params.row.Status}
+                    {params.row.Status === "pending"?<div className="assignButton">Assign</div>:<div className="assignButton">Track</div>}
                 </div>
             )
         }

@@ -40,7 +40,6 @@ const Single = (props) => {
         //     unsub();
         // }
     })
-    console.log("THIS IS THE DATA", data);
     return (
         <div className="single">
             <Sidebar />

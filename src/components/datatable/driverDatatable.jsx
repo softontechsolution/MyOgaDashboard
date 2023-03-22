@@ -1,6 +1,6 @@
 import "./driverDatatable.scss";
 import { DataGrid } from '@mui/x-data-grid';
-import { driverColumns, driversRows } from "../../datatablesource";
+import { driverColumns } from "../../datatablesource";
 import { useNavigate, Link } from "react-router-dom"
 import { useState, useEffect, useRef } from 'react';
 import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
