@@ -1,17 +1,46 @@
 import "./modal.scss";
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { doc, getDoc } from "firebase/firestore";
+import { db, auth } from "../../firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 const Modal = ({ open, onClose }) => {
+    const [userID, setUserID] = useState('');
+    const [data, setData] = useState([]);
 
-    // const [myLocalStorageData, setMyLocalStorageData] = useState('');
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is signed in, see docs for a list of available properties
+                // https://firebase.google.com/docs/reference/js/firebase.User
+                const uid = user.uid;
+                setUserID(uid);
+                // ...
+            } else {
+                // User is signed out
+                // ...
+            }
+        });
 
-    // useEffect(() => {
-
-    //     let user = firebase.getAuth
-    //     //logic for getting a value from local storage stored under the key 'key'
-    //     const data = localStorage.getItem('user');
-    //     setMyLocalStorageData(JSON.parse(data));
-    //     console.log(myLocalStorageData);
-    // }, [myLocalStorageData]);
+        const fetchData = async () => {
+            try {
+                const profile = [];
+                const docRef = doc(db, "Admin", userID);
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    profile.push({ name: docSnap.data().name, Email: docSnap.data().email, date: docSnap.data().dateCreated, img: docSnap.data().profilePhoto })
+                    setData(profile);
+                    console.log("Document data:", docSnap.data());
+                } else {
+                    console.log("No such document!");
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchData()
+    }, [userID])
 
     if (!open) return null;
     return (
@@ -19,7 +48,7 @@ const Modal = ({ open, onClose }) => {
             <div className="modal">
                 <div className="modalLeft">
                     <img
-                        src="https://images.pexels.com/photos/91224/pexels-photo-91224.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                        src={data.map(data => (data.img))}
                         alt="cottonbro studio from Pexels"
                         className="avatar"
                     />
@@ -27,8 +56,9 @@ const Modal = ({ open, onClose }) => {
                 <div className="modalRight">
                     <div className="closeBtn" onClick={onClose}> <h1>&#x2613;</h1></div>
                     <div className="content">
-                        <h1>Name</h1>
-                        <p>Email</p>
+                        <h1>{data.map(data => (data.name))}</h1>
+                        <p>{data.map(data => (data.Email))}</p>
+                        <p>{data.map(data => (data.date))}</p>
                         <div className="pBtn">Change Password</div>
                         <div className="sBtn">Settings</div>
                     </div>
