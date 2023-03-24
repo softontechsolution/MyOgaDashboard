@@ -4,7 +4,11 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
-function AssignModal() {
+function AssignModal(props) {
+    const [dID, setDid] = useState(props.Id);
+    const [dValue, setDvalue] = useState(props.value);
+
+
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -27,24 +31,23 @@ function AssignModal() {
                     <Modal.Title>Verify Driver</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form>
+                    <Form id="verifyForm">
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Email address</Form.Label>
-                            <Form.Control type="email" placeholder="Enter email" />
+                            <Form.Label>Verification Value</Form.Label>
+                            <Form.Control type="text" placeholder="Enter 1 or 0" value={dValue}
+                                onChange={(e) => { setDvalue(e.target.value) }}
+                            />
                             <Form.Text className="text-muted">
                                 Enter 1 for verify and 0 for not verified.
                             </Form.Text>
                         </Form.Group>
-                        <Button variant="primary" type="submit">
-                            Submit
-                        </Button>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary">Verify</Button>
+                    <button className="primaryBtn" form="verifyForm" type="submit">Verify</button>
                 </Modal.Footer>
             </Modal>
         </>
