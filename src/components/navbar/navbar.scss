@@ -1,4 +1,4 @@
-.navbar{
+.mNavbar{
     height: 50px;
     border-bottom: 0.5px solid rgb(231, 230, 230);
     display: flex;
@@ -12,6 +12,7 @@
         width: 100%;
         align-items: center;
         justify-content: space-between;
+        margin-bottom: 10px;
 
         .search{
             display: flex;
@@ -39,6 +40,8 @@
                 align-items: center;
                 margin: 12px;
                 position: relative;
+                cursor: pointer;
+
 
                 .icon{
                     font-size: 20px;

@@ -1,9 +1,9 @@
-.modal{
+.pmodal{
     max-width: 600px;
     width: 400px;
     position: absolute;
-    top: 30px;
-    right: 30px;
+    top: 10px;
+    right: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,10 +38,10 @@
 
         .closeBtn{
             position: absolute;
-            top: -5px;
-            right: -5px;
-            height: 20px;
-            width: 20px;
+            top: 20px;
+            right: 20px;
+            height: 5px;
+            width: 5px;
             cursor: pointer;
             color: #e290fa;
         }
@@ -51,8 +51,16 @@
             flex-direction: column;
             justify-content: center;
             text-align: center;
-            margin-top: 3rem;
-            padding: 1rem 2rem;
+            margin-top: 2px;
+
+            .content-item{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                cursor: pointer;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
 
             .pBtn{
 
@@ -63,7 +71,8 @@
             }
 
             h1{
-
+                font-size: 20px;
+                color: gray;
             }
 
             p{
@@ -73,7 +82,7 @@
 
         .btnContainer{
             display: flex;
-            padding: 1rem 1rem;
+            padding: 10px;
 
             button{
                 width: 100%;

@@ -2,13 +2,14 @@ import "./navbar.scss"
 import SearchIcon from '@mui/icons-material/Search';
 import LanguageIcon from '@mui/icons-material/Language';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-import ListIcon from '@mui/icons-material/List';
+// import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
+// import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+// import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+//import ListIcon from '@mui/icons-material/List';
 import { useContext, useState } from "react";
 import { DarkModeContext } from "../../context/darkModeContext";
-import Modal from "../modal/Modal";
+import Mmodal from "../modal/PModal";
+//import ProfileModal from "../modal/ProfileModal";
 
 const Navbar = () => {
 
@@ -16,8 +17,8 @@ const Navbar = () => {
     const [openModal, setOpenModal] = useState(false);
 
     return (
-        <div className="navbar">
-            <Modal open={openModal} onClose={() => setOpenModal(false)} />
+        <div className="mNavbar">
+            <Mmodal open={openModal} onClose={() => setOpenModal(false)} />
             <div className="wrapper">
                 <div className="search">
                     <input type="text" placeholder="Search...." />
@@ -31,7 +32,8 @@ const Navbar = () => {
                     <div className="item">
                         <DarkModeIcon className="icon" onClick={() => dispatch({ type: "TOGGLE" })} />
                     </div>
-                    <div className="item">
+
+                    {/* <div className="item">
                         <FullscreenExitIcon className="icon" />
                     </div>
                     <div className="item">
@@ -41,16 +43,13 @@ const Navbar = () => {
                     <div className="item">
                         <ChatBubbleOutlineIcon className="icon" />
                         <div className="counter">2</div>
-                    </div>
-                    <div className="item" onClick={() => setOpenModal(true)}>
+                    </div> */}
+                    <div className="item" onClick={() => setOpenModal(true)} >
                         <img
-                            src="https://images.pexels.com/photos/91224/pexels-photo-91224.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            src="https://cdn-icons-png.flaticon.com/512/3033/3033143.png"
                             alt="cottonbro studio from Pexels"
                             className="avatar"
                         />
-                    </div>
-                    <div className="item">
-                        <ListIcon className="icon" />
                     </div>
                 </div>
             </div>

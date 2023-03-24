@@ -1,3 +1,5 @@
+import AssignModal from './components/modal/AssignModal';
+
 export const userColumns = [
     { field: 'id', headerName: 'ID', width: 150 },
     {
@@ -86,7 +88,7 @@ export const driverColumns = [
             return(
                 <div className={`cellWithVerify ${params.row.Verified}`}>
                     {params.row.Verified==="1"?"verified":"not verified"}
-                    {params.row.Verified==="0"?<div className="verifyButton">Verify Driver</div>:<div className="verifiedButton">Verified</div>}
+                    {params.row.Verified==="0"?<AssignModal/>:<div className="verifiedButton">Verified</div>}
                 </div>
             )
         }

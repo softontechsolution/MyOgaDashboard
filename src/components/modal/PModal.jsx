@@ -1,27 +1,16 @@
-import "./modal.scss";
-import { useEffect } from 'react';
-import { useState } from 'react';
+import "./pmodal.scss";
+import { useEffect, useState } from 'react';
 import { doc, getDoc } from "firebase/firestore";
-import { db, auth } from "../../firebase";
-import { onAuthStateChanged } from "firebase/auth";
+import { db } from "../../firebase";
 
-const Modal = ({ open, onClose }) => {
+const Mmodal = ({ open, onClose }) => {
+
     const [userID, setUserID] = useState('');
     const [data, setData] = useState([]);
+    const [items, setItems] = useState([]);
 
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                // User is signed in, see docs for a list of available properties
-                // https://firebase.google.com/docs/reference/js/firebase.User
-                const uid = user.uid;
-                setUserID(uid);
-                // ...
-            } else {
-                // User is signed out
-                // ...
-            }
-        });
+        fetchID();
 
         const fetchData = async () => {
             try {
@@ -40,15 +29,24 @@ const Modal = ({ open, onClose }) => {
             }
         };
         fetchData()
-    }, [userID])
+    }, [userID]);
+
+    const fetchID = () => {
+        const items = JSON.parse(localStorage.getItem('user'));
+        if (items) {
+            setItems(items);
+            console.log("The Id IS: ", items.uid);
+            setUserID(items.uid);
+        }
+    }
 
     if (!open) return null;
     return (
         <div className="overlay">
-            <div className="modal">
+            <div className="pmodal">
                 <div className="modalLeft">
                     <img
-                        src={data.map(data => (data.img))}
+                        src="https://images.pexels.com/photos/13419559/pexels-photo-13419559.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         alt="cottonbro studio from Pexels"
                         className="avatar"
                     />
@@ -56,11 +54,23 @@ const Modal = ({ open, onClose }) => {
                 <div className="modalRight">
                     <div className="closeBtn" onClick={onClose}> <h1>&#x2613;</h1></div>
                     <div className="content">
-                        <h1>{data.map(data => (data.name))}</h1>
-                        <p>{data.map(data => (data.Email))}</p>
-                        <p>{data.map(data => (data.date))}</p>
-                        <div className="pBtn">Change Password</div>
-                        <div className="sBtn">Settings</div>
+                        <h1>
+                            Name: {data.map(data => (data.name))}
+                        </h1>
+                        <p>
+                            Email: {data.map(data => (data.Email))}
+                        </p>
+                        <p>
+                            Date: {data.map(data => (data.date))}
+                        </p>
+                        <div className="content-item">
+                            <a href="./">
+                                <div className="pBtn">Change Password</div>
+                            </a>
+                            <a href="./">
+                                <div className="sBtn">Settings</div>
+                            </a>
+                        </div>
                     </div>
                     <div className="btnContainer">
                         <button className="btnPrimary">
@@ -76,4 +86,4 @@ const Modal = ({ open, onClose }) => {
     )
 }
 
-export default Modal
+export default Mmodal
