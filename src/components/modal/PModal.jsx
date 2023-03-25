@@ -55,7 +55,7 @@ const Mmodal = ({ open, onClose }) => {
                     <div className="closeBtn" onClick={onClose}> <h1>&#x2613;</h1></div>
                     <div className="content">
                         <h1>
-                            Name: {data.map(data => (data.name))}
+                            Name:{data.map(data => (data.name))}
                         </h1>
                         <p>
                             Email: {data.map(data => (data.Email))}

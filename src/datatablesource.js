@@ -1,4 +1,5 @@
 import AssignModal from './components/modal/AssignModal';
+import VerifyModal from './components/modal/VerifyModal';
 
 export const userColumns = [
     { field: 'id', headerName: 'ID', width: 150 },
@@ -204,7 +205,7 @@ export const bookingColumns = [
             return(
                 <div className={`cellWithStatus ${params.row.Status}`}>
                     {params.row.Status}
-                    {params.row.Status === "pending"?<div className="assignButton">Assign</div>:<div className="assignButton">Track</div>}
+                    {params.row.Status === "pending"?<VerifyModal/>:<div className="assignButton">Track</div>}
                 </div>
             )
         }

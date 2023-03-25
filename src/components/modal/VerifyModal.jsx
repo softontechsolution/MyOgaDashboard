@@ -1,3 +1,4 @@
+import "./verifyModal.scss"
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -5,24 +6,23 @@ import Form from 'react-bootstrap/Form';
 
 function VerifyModal() {
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
-                Launch static backdrop modal
-            </Button>
+            <div className="assignButton" onClick={handleShow}>Assign</div>
 
             <Modal
                 show={show}
+                size="lg"
                 onHide={handleClose}
                 backdrop="static"
                 keyboard={false}
+                aria-labelledby="example-modal-sizes-title-lg"
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Verify Driver</Modal.Title>
+                    <Modal.Title id="example-modal-sizes-title-lg">Assign Booking</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
@@ -50,7 +50,7 @@ function VerifyModal() {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary">Verify</Button>
+                    <Button variant="primary">Assign</Button>
                 </Modal.Footer>
             </Modal>
         </>

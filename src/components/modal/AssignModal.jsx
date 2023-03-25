@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import { updateDoc, serverTimestamp, doc } from "firebase/firestore";
+import { db } from '../../firebase';
 
 function AssignModal(props) {
-    const [dID, setDid] = useState(props.Id);
+    const dID = props.Id;
     const [dValue, setDvalue] = useState(props.value);
 
 
@@ -13,6 +15,16 @@ function AssignModal(props) {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const handleUpdate = async () => {
+        const docRef = doc(db, 'Drivers', dID);
+
+        // Update the timestamp field with the value from the server
+        const updateTimestamp = await updateDoc(docRef, {
+            Verified: dValue,
+            timeStamp: serverTimestamp()
+        });
+    }
 
     return (
         <>
@@ -31,7 +43,12 @@ function AssignModal(props) {
                     <Modal.Title>Verify Driver</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form id="verifyForm">
+                    <Form
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            handleUpdate();
+                        }}
+                        id="verifyForm">
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Verification Value</Form.Label>
                             <Form.Control type="text" placeholder="Enter 1 or 0" value={dValue}
