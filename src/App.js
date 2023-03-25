@@ -1,3 +1,4 @@
+import './index.css';
 import Home from "./pages/home/home";
 import Login from "./pages/login/login";
 import Single from "./pages/single/single";
