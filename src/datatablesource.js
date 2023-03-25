@@ -205,7 +205,7 @@ export const bookingColumns = [
             return(
                 <div className={`cellWithStatus ${params.row.Status}`}>
                     {params.row.Status}
-                    {params.row.Status === "pending"?<VerifyModal/>:<div className="assignButton">Track</div>}
+                    {params.row.Status === "pending"?<VerifyModal Id={params.row.id}/>:<div className="assignButton">Track</div>}
                 </div>
             )
         }

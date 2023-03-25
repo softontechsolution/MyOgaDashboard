@@ -48,7 +48,7 @@ const Mmodal = ({ open, onClose }) => {
                     <img
                         src="https://images.pexels.com/photos/13419559/pexels-photo-13419559.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         alt="cottonbro studio from Pexels"
-                        className="avatar"
+                        className="avatar object-cover rounded-full h-[100px] w-[100px]"
                     />
                 </div>
                 <div className="modalRight">
