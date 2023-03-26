@@ -24,6 +24,7 @@ import SingleCompany from './pages/single/singleCompany';
 import BookingList from './pages/list/bookingList';
 import NewBooking from './pages/new/newBooking';
 import SingleBooking from './pages/single/singleBooking';
+import StatusList from './pages/list/StatusList';
 
 
 function App() {
@@ -123,6 +124,14 @@ function App() {
               <Route path="new" element={
                   <RequireAuth>
                     <NewBooking/>
+                  </RequireAuth>
+                }
+              />
+            </Route>
+            <Route path="bookingstatus">
+              <Route index element={
+                  <RequireAuth>
+                    <StatusList/>
                   </RequireAuth>
                 }
               />

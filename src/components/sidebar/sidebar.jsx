@@ -18,6 +18,7 @@ import { AuthContext } from "../../context/authContext";
 import { auth } from './../../firebase';
 import { signOut } from "firebase/auth";
 import Snakbar from '../snackbar/Snakbar';
+import MyOga from '../../myogaIcon3.png';
 
 const Sidebar = () => {
 
@@ -49,7 +50,7 @@ const Sidebar = () => {
             <Snakbar ref={snackbarRef} message={msg} type={sType} />
             <div className="top">
                 <Link to="/" style={{ textDecoration: "none" }}>
-                    <span className="logo">My Oga</span>
+                    <span className="logo"><img src={MyOga} className="App-logo" alt="logo" /></span>
                 </Link>
             </div>
             <hr />
@@ -57,62 +58,64 @@ const Sidebar = () => {
                 <ul>
                     <p className="title">MAIN</p>
                     <Link to="/" style={{ textDecoration: "none" }}>
-                        <li>
+                        <li tabindex="0">
                             <DashboardIcon className="icon" />
                             <span>Dashboard</span>
                         </li>
                     </Link>
                     <p className="title">LIST</p>
                     <Link to="/users" style={{ textDecoration: "none" }}>
-                        <li>
+                        <li tabindex="0">
                             <AccountCircleIcon className="icon" />
                             <span>Users</span>
                         </li>
                     </Link>
                     <Link to="/drivers" style={{ textDecoration: "none" }}>
-                        <li>
+                        <li tabindex="0">
                             <DirectionsCarIcon className="icon" />
                             <span>Drivers</span>
                         </li>
                     </Link>
                     <Link to="/company" style={{ textDecoration: "none" }}>
-                        <li>
+                        <li tabindex="0">
                             <EmojiTransportationIcon className="icon" />
                             <span>Companies</span>
                         </li>
                     </Link>
                     <Link to="/bookings" style={{ textDecoration: "none" }}>
-                        <li>
+                        <li tabindex="0">
                             <LibraryBooksIcon className="icon" />
                             <span>Bookings</span>
                         </li>
                     </Link>
-                    <li>
-                        <GpsFixedIcon className="icon" />
-                        <span>Order Status</span>
-                    </li>
-                    <li>
+                    <Link to="/bookingstatus" style={{ textDecoration: "none" }}>
+                        <li tabindex="0">
+                            <GpsFixedIcon className="icon" />
+                            <span>Order Status</span>
+                        </li>
+                    </Link>
+                    <li tabindex="0">
                         <DonutSmallIcon className="icon" />
                         <span>Earnings</span>
                     </li>
                     <p className="title">USEFUL LINKS</p>
-                    <li>
+                    <li tabindex="0">
                         <CircleNotificationsIcon className="icon" />
                         <span>Notifications</span>
                     </li>
-                    <li>
+                    <li tabindex="0">
                         <CreditScoreIcon className="icon" />
                         <span>Payments</span>
                     </li>
-                    <li>
+                    <li tabindex="0">
                         <SettingsIcon className="icon" />
                         <span>Settings</span>
                     </li>
-                    <li>
+                    <li tabindex="0">
                         <PermIdentityIcon className="icon" />
                         <span>Profile</span>
                     </li>
-                    <li>
+                    <li tabindex="0">
                         <div onClick={() => handleSignOut()}>
                             <LogoutIcon className="icon" />
                             <span>Logout</span>

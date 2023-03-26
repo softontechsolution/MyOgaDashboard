@@ -48,6 +48,11 @@
                     background-color: rgb(237, 221, 237)
                 }
 
+                li:focus{
+                    background-color: gray;
+                    color: gray;
+                }
+
                 .icon{
                     font-size: 18px;
                     color: #e290fa;

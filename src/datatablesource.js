@@ -216,6 +216,95 @@ export const bookingColumns = [
     },
 ];
 
+export const statusColumns = [
+    { field: 'id', headerName: 'ID', width: 100 },
+    {
+        field: "Booking Number", headerName:"Booking Number", width: 150,
+        
+    },
+    {
+        field: 'Customer ID', headerName:"Customer ID", width: 100,
+        
+    },
+    {
+        field: "Driver ID", headerName:"Driver ID", width: 100,
+        
+    },
+    {
+        field: ['Order Assigned'], headerName:"Booking Accepted", width: 150,
+        renderCell:(params)=>{
+            return(
+                <div className='cellStatus'>
+                    {params.row['Order Assigned'] === "1"?"Yes":"Not Yet"}
+                </div>
+            )
+        }
+    },
+    {
+        field: ['Out For PickUp'], headerName:"On Way to Pick Up", width: 150,
+        renderCell:(params)=>{
+            return(
+                <div className='cellStatus'>
+                    {params.row['Out For PickUp'] === "1"?"Yes":"Not Yet"}
+                </div>
+            )
+        }
+    },
+    {
+        field: "Arrived at PickUp", headerName:"Arrived at Pick Up", width: 80,
+        renderCell:(params)=>{
+            return(
+                <div className='cellStatus'>
+                    {params.row['Arrived at PickUp'] === "1"?"Yes":"Not Yet"}
+                </div>
+            )
+        }
+    },
+    {
+        field: "Parcel Picked", headerName:"Parcel Picked", width: 100,
+        renderCell:(params)=>{
+            return(
+                <div className='cellStatus'>
+                    {params.row['Parcel Picked'] === "1"?"Yes":"Not Yet"}
+                </div>
+            )
+        }
+    },
+    {
+        field: "Going to DropOff", headerName:"On Way to Drop", width: 150,
+        renderCell:(params)=>{
+            return(
+                <div className='cellStatus'>
+                    {params.row['Going to DropOff'] === "1"?"Yes":"Not Yet"}
+                </div>
+            )
+        }
+    },
+    {
+        field: "Arrived at DropOff", headerName:"Arrived at Drop", width: 100,
+        renderCell:(params)=>{
+            return(
+                <div className='cellStatus'>
+                    {params.row['Arrived at DropOff'] === "1"?"Yes":"Not Yet"}
+                </div>
+            )
+        }
+    },
+    {
+        field: "Completed", headerName:"Completed", width: 100,
+        renderCell:(params)=>{
+            return(
+                <div className='cellStatus'>
+                    {params.row.Completed === "1"?"Yes":"Not Yet"}
+                </div>
+            )
+        }
+    },
+    {
+        field: "Date Created", headerName:"Date Created", width: 150,
+    },
+];
+
 export const driversRows = [
     {
         id: "12DFsdCDEZ",
