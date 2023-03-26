@@ -11,7 +11,6 @@ function VerifyModal(props) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [data, setData] = useState([]);
-    const dID = props.Id;
 
     useEffect(() => {
 
@@ -54,7 +53,7 @@ function VerifyModal(props) {
                     <div className="flex flex-wrap justify-center">
                         {data.map((data) => {
                             return (
-                                < Drivers name={data.name} vehicle={data.vehicle} online={data.online} addy={data.addy} img={data.img} id={data.id} />
+                                < Drivers name={data.name} vehicle={data.vehicle} online={data.online} addy={data.addy} img={data.img} id={data.id} bookID={props.Id} bookNum={props.bookNum} customer={props.customer} />
                             )
                         })}
                     </div>

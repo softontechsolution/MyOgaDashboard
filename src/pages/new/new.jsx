@@ -88,14 +88,12 @@ const New = ({ inputs, title }) => {
                 Status: "inactive",
                 'Date Created': new Date().toString(),
             });
-            setMsg("User Added Successfully");
+            setMsg("User Added Successfully", docRef.id);
             setType("success");
             snackbarRef.current.show();
             navigate(-1);
 
-            console.log("Document written with ID: ", docRef.id);
         } catch (e) {
-            console.error("Error adding document: ", e);
             setMsg(e.message);
             setType("error");
             snackbarRef.current.show();
