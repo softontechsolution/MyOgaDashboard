@@ -1,4 +1,5 @@
 import AssignModal from './components/modal/AssignModal';
+import ModalContainer from './components/modal/ModalContainer';
 import VerifyModal from './components/modal/VerifyModal';
 
 export const userColumns = [
@@ -205,7 +206,7 @@ export const bookingColumns = [
             return(
                 <div className={`cellWithStatus ${params.row.Status}`}>
                     {params.row.Status}
-                    {params.row.Status === "pending"?<VerifyModal Id={params.row.id} customer={params.row['Customer ID']} bookNum={params.row['Booking Number']}/>:<div className="assignButton">Track</div>}
+                    {params.row.Status === "pending"?<VerifyModal Id={params.row.id} customer={params.row['Customer ID']} bookNum={params.row['Booking Number']}/>:<ModalContainer id={params.row.id}/>}
                 </div>
             )
         }
