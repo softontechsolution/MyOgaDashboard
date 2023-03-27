@@ -105,20 +105,24 @@ const Sidebar = () => {
                         <CircleNotificationsIcon className="icon" />
                         <span>Notifications</span>
                     </li>
-                    <li tabindex="0">
-                        <CreditScoreIcon className="icon" />
-                        <span>Payments</span>
-                    </li>
+                    <Link>
+                        <li tabindex="0">
+                            <CreditScoreIcon className="icon" />
+                            <span>Support</span>
+                        </li>
+                    </Link>
                     <Link to="/setting" style={{ textDecoration: "none" }}>
                         <li tabindex="0">
                             <SettingsIcon className="icon" />
                             <span>Settings</span>
                         </li>
                     </Link>
-                    <li tabindex="0">
-                        <PermIdentityIcon className="icon" />
-                        <span>Profile</span>
-                    </li>
+                    <Link to="/profile" style={{ textDecoration: "none" }}>
+                        <li tabindex="0">
+                            <PermIdentityIcon className="icon" />
+                            <span>Profile</span>
+                        </li>
+                    </Link>
                     <li tabindex="0">
                         <div onClick={() => handleSignOut()}>
                             <LogoutIcon className="icon" />
