@@ -5,22 +5,18 @@ import Form from 'react-bootstrap/Form';
 import { collection, addDoc } from "firebase/firestore";
 import { db } from '../../firebase';
 
-function AddModeModal() {
+function AddLocationModal() {
 
     const [Name, setName] = useState('');
-    const [Rate, setRate] = useState('');
-    const [Duration, setDuration] = useState('');
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     const handleAdd = async () => {
-        const DocRef = collection(db, "Settings", "deliverymodes", "modes");
+        const DocRef = collection(db, "Settings", "locations", "states");
         await addDoc(DocRef, {
-            name: Name,
-            rate: Rate,
-            duration: Duration
+            name: Name
         });
         handleClose();
     }
@@ -37,7 +33,7 @@ function AddModeModal() {
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Add New Delivery Mode</Modal.Title>
+                    <Modal.Title>Add New Service Area</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form
@@ -47,30 +43,12 @@ function AddModeModal() {
                         }}
                         id="verifyForm">
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Mode Name</Form.Label>
-                            <Form.Control type="text" placeholder="e.g Express" value={Name}
+                            <Form.Label>Location Name</Form.Label>
+                            <Form.Control type="text" placeholder="e.g Lagos" value={Name}
                                 onChange={(e) => { setName(e.target.value) }}
                             />
                             <Form.Text className="text-muted">
-                                Enter the devlivery mode name.
-                            </Form.Text>
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Mode Rate</Form.Label>
-                            <Form.Control type="text" placeholder="e.g 230" value={Rate}
-                                onChange={(e) => { setRate(e.target.value) }}
-                            />
-                            <Form.Text className="text-muted">
-                                Enter the rate per kilometer.
-                            </Form.Text>
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Mode Duration</Form.Label>
-                            <Form.Control type="text" placeholder="e.g 6" value={Duration}
-                                onChange={(e) => { setDuration(e.target.value) }}
-                            />
-                            <Form.Text className="text-muted">
-                                Enter the hours for delivery.
+                                Enter the service area.
                             </Form.Text>
                         </Form.Group>
                     </Form>
@@ -86,4 +64,4 @@ function AddModeModal() {
     );
 }
 
-export default AddModeModal
+export default AddLocationModal

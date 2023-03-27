@@ -7,6 +7,9 @@ import { collection, onSnapshot } from "firebase/firestore";
 import { db } from '../../firebase';
 import SupportSet from '../settings/SupportSet';
 import AddModeModal from '../modal/AddModeModal';
+import AddVehicleModal from '../modal/AddVehicleModal';
+import AddLocationModal from '../modal/AddLocationModal';
+import AddSupportModal from '../modal/AddSupportModal';
 
 const SettingData = () => {
 
@@ -107,7 +110,7 @@ const SettingData = () => {
 
     return (
         <div class="container mx-auto">
-            <div className="setTile px-8 py-8"><p class="text-slate-400 hover:text-sky-400">System Settings</p></div>
+            <div className="setTile p-4"><p class="text-slate-400 hover:text-sky-400">System Settings</p></div>
             <div className="top">
                 <div className="leftCard p-4">
                     <AddModeModal />
@@ -120,7 +123,7 @@ const SettingData = () => {
                     </div>
                 </div>
                 <div className="rightCard p-4">
-                    <button class="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Add</button>
+                    <AddLocationModal />
                     <div className='shadow-md flex flex-wrap justify-center'>
                         {Ldata.map((data) => {
                             return (
@@ -132,7 +135,7 @@ const SettingData = () => {
             </div>
             <div className="bottom">
                 <div className="leftCard p-4">
-                    <button class="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Add</button>
+                    <AddVehicleModal />
                     <div className="shadow-md flex flex-wrap justify-center">
                         {Vdata.map((data) => {
                             return (
@@ -142,7 +145,7 @@ const SettingData = () => {
                     </div>
                 </div>
                 <div className="rightCard p-4">
-                    <button class="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Add</button>
+                    <AddSupportModal />
                     <div className="shadow-md flex flex-wrap justify-center">
                         {Sdata.map((data) => {
                             return (
