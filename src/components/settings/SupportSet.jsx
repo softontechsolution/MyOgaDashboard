@@ -1,6 +1,18 @@
 import React from 'react'
+import { deleteDoc, doc } from "firebase/firestore";
+import { db } from './../../firebase';
+import EditSupport from '../modal/EditSupport';
 
 const SupportSet = (props) => {
+
+    const handleDelete = async () => {
+        try {
+            await deleteDoc(doc(db, "Settings", "supports", "types", props.id));
+        } catch (erre) {
+
+        }
+    };
+
     return (
         <div class="m-2 py-8 px-8 max-w-sm bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
             <p class="text-slate-400 hover:text-sky-400 text-left">Support Categories</p>
@@ -10,8 +22,8 @@ const SupportSet = (props) => {
                         {props.name}
                     </p>
                 </div>
-                <button class="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Edit</button>
-                <button class="px-4 py-1 text-sm text-red-600 font-semibold rounded-full border border-red-200 hover:text-white hover:bg-red-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Delete</button>
+                <EditSupport id={props.id} name={ props.name} />
+                <button onClick={() => handleDelete()} class="px-4 py-1 text-sm text-red-600 font-semibold rounded-full border border-red-200 hover:text-white hover:bg-red-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Delete</button>
             </div>
         </div>
     )
