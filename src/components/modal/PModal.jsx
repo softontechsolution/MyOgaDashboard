@@ -20,12 +20,10 @@ const Mmodal = ({ open, onClose }) => {
                 if (docSnap.exists()) {
                     profile.push({ name: docSnap.data().name, Email: docSnap.data().email, date: docSnap.data().dateCreated, img: docSnap.data().profilePhoto })
                     setData(profile);
-                    console.log("Document data:", docSnap.data());
                 } else {
-                    console.log("No such document!");
+
                 }
             } catch (error) {
-                console.log(error);
             }
         };
         fetchData()

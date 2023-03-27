@@ -111,10 +111,10 @@ const New = ({ inputs, title }) => {
                     <h1 className="titleHading">{title}</h1>
                 </div>
                 <div className="bottom">
-                    <div className="left">
+                    <div className="new-left">
                         <img src={file ? URL.createObjectURL(file) : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"} alt="empty icon" />
                     </div>
-                    <div className="right">
+                    <div className="new-right">
                         <form onSubmit={handleAdd}>
                             <div className="formInput">
                                 <label htmlFor="file"> Upload Image <DriveFolderUploadIcon className="icon" /></label>
