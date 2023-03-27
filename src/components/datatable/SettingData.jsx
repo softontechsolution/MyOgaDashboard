@@ -14,6 +14,8 @@ const SettingData = () => {
 
     useEffect(() => {
         fetchMode();
+        fetchVehicle();
+        fetchLocation();
 
     });
 
@@ -37,6 +39,46 @@ const SettingData = () => {
             unsub();
         }
     }
+    const fetchVehicle = () => {
+        const unsub = onSnapshot(collection(db, "Settings/deliveryVehicles/vehicles"), (snapShot) => {
+            let list = [];
+            snapShot.docs.forEach(doc => {
+                list.push({ id: doc.id, name: doc.data().name });
+            });
+            setVData(list);
+            // setMsg(" Displaying Users Information ");
+            // setType("success");
+            // snackbarRef.current.show();
+        }, (error) => {
+            // setMsg(error.message);
+            // setType("error");
+            // snackbarRef.current.show();
+        });
+
+        return () => {
+            unsub();
+        }
+    }
+    const fetchLocation = () => {
+        const unsub = onSnapshot(collection(db, "Settings/locations/states"), (snapShot) => {
+            let list = [];
+            snapShot.docs.forEach(doc => {
+                list.push({ id: doc.id, name: doc.data().name });
+            });
+            setLData(list);
+            // setMsg(" Displaying Users Information ");
+            // setType("success");
+            // snackbarRef.current.show();
+        }, (error) => {
+            // setMsg(error.message);
+            // setType("error");
+            // snackbarRef.current.show();
+        });
+
+        return () => {
+            unsub();
+        }
+    }
 
     return (
         <div class="container mx-auto">
@@ -44,7 +86,7 @@ const SettingData = () => {
             <div className="top">
                 <div className="leftCard p-4">
                     <button class="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Add</button>
-                    <div className="shadow-md flex flex-wrap">
+                    <div className="shadow-md flex flex-wrap justify-center">
                         {Mdata.map((data) => {
                             return (
                                 < Dmode name={data.name} id={data.id} rate={data.rate} duration={data.duration} />
@@ -55,7 +97,11 @@ const SettingData = () => {
                 <div className="rightCard p-4">
                     <button class="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Add</button>
                     <div className='shadow-md flex flex-wrap justify-center'>
-                        <LocationSet />
+                        {Ldata.map((data) => {
+                            return (
+                                < LocationSet name={data.name} id={data.id} />
+                            )
+                        })}
                     </div>
                 </div>
             </div>
@@ -63,7 +109,11 @@ const SettingData = () => {
                 <div className="leftCard p-4">
                     <button class="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Add</button>
                     <div className="shadow-md flex flex-wrap justify-center">
-                        <VehicleSet />
+                        {Vdata.map((data) => {
+                            return (
+                                < VehicleSet name={data.name} id={data.id} />
+                            )
+                        })}
                     </div>
                 </div>
                 <div className="rightCard p-4">
