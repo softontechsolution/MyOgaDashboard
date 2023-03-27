@@ -304,6 +304,64 @@ export const statusColumns = [
         field: "Date Created", headerName:"Date Created", width: 150,
     },
 ];
+export const earningColumns = [
+    { field: 'id', headerName: 'ID', width: 100 },
+    {
+        field: "BookingNumber", headerName:"Booking Number", width: 150,
+        renderCell:(params)=>{
+            return(
+                <div className='cellStatus'>
+                    <a href='./'>
+                        {params.row.BookingNumber}
+                    </a>
+                </div>
+            )
+        }
+        
+    },
+    {
+        field: "BookingID", headerName:"Booking ID", width: 150,
+        
+    },
+    {
+        field: "Driver", headerName:"Driver ID", width: 100,
+        renderCell:(params)=>{
+            return(
+                <div className='cellStatus'>
+                    <a href='./'>
+                        {params.row.Driver}
+                    </a>
+                </div>
+            )
+        }
+        
+    },
+    {
+        field: "Company", headerName:"Booking Accepted", width: 150,
+        renderCell:(params)=>{
+            return(
+                <div className='cellStatus'>
+                    <a href='./'>
+                        {params.row.Company}
+                    </a>
+                </div>
+            )
+        }
+    },
+    {
+        field: "Amount", headerName:"Amount", width: 150,
+        renderCell:(params)=>{
+            return(
+                <div className='cellStatus'>
+                    N{params.row.Amount}
+                </div>
+            )
+        }
+    },
+    {
+        field: "Date Created", headerName:"Date Created", width: 150,
+    },
+];
 
 export const driversRows = [
     {
@@ -459,6 +517,48 @@ export const driversRows = [
         Status: "Pending",
     },
   ];
+
+  export const earningsColumns = [
+    { field: 'id', headerName: 'ID', width: 150 },
+    {
+        field: "CompanyName", headerName: "Company Name", width: 200, renderCell: (params)=>{
+            return (
+                <div className="cellWithImg">
+                    <img className="cellImg" src="https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg" alt=" avatar "/>
+                    {params.row.CompanyName}
+                </div>
+            )
+        }
+    },
+    {
+        field: "Email", headerName:"Email", width: 200,
+    },
+    {
+        field: "Phone", headerName:"Company Phone Number", width: 150,
+    },
+    {
+        field: "DateOfRegistration", headerName:"Date of Registration", width: 150,
+    },
+    {
+        field: "Address", headerName:"Company Address", width: 150,
+    },
+    {
+        field: "Status", headerName:"Status", width: 100,
+        renderCell:(params)=>{
+            return(
+                <div className={`cellWithStatus ${params.row.Status}`}>
+                    {params.row.Status}
+                </div>
+            )
+        }
+    },
+    {
+        field: "Document", headerName:"Documents", width: 150,
+    },
+    {
+        field: "timeStamp", headerName:"Date Created", width: 150,
+    },
+];
 
 export const companyRows = [
     {
