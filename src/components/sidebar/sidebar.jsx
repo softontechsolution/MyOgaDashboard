@@ -94,10 +94,12 @@ const Sidebar = () => {
                             <span>Order Status</span>
                         </li>
                     </Link>
-                    <li tabindex="0">
-                        <DonutSmallIcon className="icon" />
-                        <span>Earnings</span>
-                    </li>
+                    <Link to="/earnings" style={{ textDecoration: "none" }}>
+                        <li tabindex="0">
+                            <DonutSmallIcon className="icon" />
+                            <span>Earnings</span>
+                        </li>
+                    </Link>
                     <p className="title">USEFUL LINKS</p>
                     <li tabindex="0">
                         <CircleNotificationsIcon className="icon" />
@@ -107,10 +109,12 @@ const Sidebar = () => {
                         <CreditScoreIcon className="icon" />
                         <span>Payments</span>
                     </li>
-                    <li tabindex="0">
-                        <SettingsIcon className="icon" />
-                        <span>Settings</span>
-                    </li>
+                    <Link to="/setting" style={{ textDecoration: "none" }}>
+                        <li tabindex="0">
+                            <SettingsIcon className="icon" />
+                            <span>Settings</span>
+                        </li>
+                    </Link>
                     <li tabindex="0">
                         <PermIdentityIcon className="icon" />
                         <span>Profile</span>
