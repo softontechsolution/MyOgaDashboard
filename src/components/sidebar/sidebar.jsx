@@ -101,10 +101,12 @@ const Sidebar = () => {
                         </li>
                     </Link>
                     <p className="title">USEFUL LINKS</p>
-                    <li tabindex="0">
-                        <CircleNotificationsIcon className="icon" />
-                        <span>Notifications</span>
-                    </li>
+                    <Link to="/notification" style={{ textDecoration: "none" }}>
+                        <li tabindex="0">
+                            <CircleNotificationsIcon className="icon" />
+                            <span>Notifications</span>
+                        </li>
+                    </Link>
                     <Link>
                         <li tabindex="0">
                             <CreditScoreIcon className="icon" />

@@ -28,6 +28,7 @@ import StatusList from './pages/list/StatusList';
 import EarningList from './pages/list/EarningList';
 import SettingList from './pages/list/SettingList';
 import Profile from './pages/list/Profile';
+import Notification from './pages/list/Notification';
 
 
 function App() {
@@ -159,6 +160,14 @@ function App() {
               <Route index element={
                   <RequireAuth>
                     <Profile/>
+                  </RequireAuth>
+                }
+              />
+            </Route>
+            <Route path="notification">
+              <Route index element={
+                  <RequireAuth>
+                    <Notification/>
                   </RequireAuth>
                 }
               />
