@@ -124,7 +124,7 @@ export const driverColumns = [
         field: "Vehicle Number", headerName:"Vehicle Number", width: 100,
     },
     {
-        field: "timeStamp", headerName:"Date Created", width: 150,
+        field: "Date Created", headerName:"Date Created", width: 150,
     },
 ];
 export const companyColumns = [

@@ -3,14 +3,17 @@ import { DataGrid } from '@mui/x-data-grid';
 import { bookingColumns, } from "../../datatablesource";
 import { useNavigate, Link } from "react-router-dom"
 import { useState, useEffect, useRef } from 'react';
-import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
+import { collection, deleteDoc, doc, onSnapshot, query, where, getDocs, or } from "firebase/firestore";
 import { db } from './../../firebase';
 import Snakbar from "../snackbar/Snakbar";
+import SearchIcon from '@mui/icons-material/Search';
 
 const BookingDatatable = () => {
 
     const navigate = useNavigate();
     const [data, setData] = useState([]);
+    const [Sdata, setSData] = useState([]);
+    const [Search, setSearch] = useState('');
 
     const snackbarRef = useRef(null);
     const [msg, setMsg] = useState("");
@@ -69,6 +72,18 @@ const BookingDatatable = () => {
         }
     }
 
+    const fetchSearch = async () => {
+        const q = query(collection(db, "Bookings"), or(where("Booking Number", "==", Search), where("Customer Phone", "==", Search)));
+        let list = [];
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            list.push({ id: doc.id, ...doc.data() });
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+        });
+        setSData(list);
+    }
+
     const actionColumn = [{
         field: "action", headerName: "Action", Width: 250, renderCell: (params) => {
             return (
@@ -89,14 +104,35 @@ const BookingDatatable = () => {
                     Add New
                 </Link>
             </div>
-            <DataGrid
-                className="datagrid"
-                rows={data}
-                columns={bookingColumns.concat(actionColumn)}
-                pageSize={9}
-                rowsPerPageOptions={[9]}
-                checkboxSelection
-            />
+            <div className="search">
+                <form onSubmit={(e) => {
+                    e.preventDefault();
+                    fetchSearch();
+                }} >
+                    <input type="text" placeholder="Search Booking Number..." onChange={(e) => { setSearch(e.target.value) }} value={Search} />
+                    <SearchIcon />
+                </form>
+            </div>
+            {Sdata.length === 0 ?
+                <DataGrid
+                    className="datagrid"
+                    rows={data}
+                    columns={bookingColumns.concat(actionColumn)}
+                    pageSize={9}
+                    rowsPerPageOptions={[9]}
+                    checkboxSelection
+                />
+                :
+                <DataGrid
+                    className="datagrid"
+                    rows={Sdata}
+                    columns={bookingColumns.concat(actionColumn)}
+                    pageSize={9}
+                    rowsPerPageOptions={[9]}
+                    checkboxSelection
+                />
+
+            }
         </div>
     )
 }

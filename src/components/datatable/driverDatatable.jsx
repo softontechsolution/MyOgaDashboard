@@ -3,36 +3,23 @@ import { DataGrid } from '@mui/x-data-grid';
 import { driverColumns } from "../../datatablesource";
 import { useNavigate, Link } from "react-router-dom"
 import { useState, useEffect, useRef } from 'react';
-import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
+import { collection, deleteDoc, doc, onSnapshot, query, where, getDocs, or } from "firebase/firestore";
 import { db } from './../../firebase';
 import Snakbar from "../snackbar/Snakbar";
+import SearchIcon from '@mui/icons-material/Search';
 
 const DriverDatatable = () => {
 
     const navigate = useNavigate();
     const [data, setData] = useState([]);
+    const [Sdata, setSData] = useState([]);
+    const [Search, setSearch] = useState('');
 
     const snackbarRef = useRef(null);
     const [msg, setMsg] = useState("");
     const [sType, setType] = useState("");
 
     useEffect(() => {
-        // const fetchData = async () =>{
-        //   let list = [];
-        //   try{
-
-        //     const querySnapshot = await getDocs(collection(db, "Users"));
-        //     querySnapshot.forEach((doc) => {
-        //       list.push({id: doc.id, ...doc.data()});
-        //       console.log(doc.id, " => ", doc.data());
-        //     });
-        //      setData(list);
-        //   }catch(error){
-        //     console.log(error);
-        //   }
-        // };
-        // fetchData()
-
         //Listening to Database
         const unsub = onSnapshot(collection(db, "Drivers"), (snapShot) => {
             let list = [];
@@ -53,6 +40,18 @@ const DriverDatatable = () => {
             unsub();
         }
     }, []);
+
+    const fetchSearch = async () => {
+        const q = query(collection(db, "Drivers"), or(where("FullName", "==", Search), where("Email", "==", Search)));
+        let list = [];
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            list.push({ id: doc.id, ...doc.data() });
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+        });
+        setSData(list);
+    }
 
     const handleDelete = async (id) => {
         try {
@@ -89,14 +88,35 @@ const DriverDatatable = () => {
                     Add New
                 </Link>
             </div>
-            <DataGrid
-                className="datagrid"
-                rows={data}
-                columns={driverColumns.concat(actionColumn)}
-                pageSize={9}
-                rowsPerPageOptions={[9]}
-                checkboxSelection
-            />
+            <div className="search">
+                <form onSubmit={(e) => {
+                    e.preventDefault();
+                    fetchSearch();
+                }} >
+                    <input type="text" placeholder="Search Driver Name..." onChange={(e) => { setSearch(e.target.value) }} value={Search} />
+                    <SearchIcon />
+                </form>
+            </div>
+            {Sdata.length === 0 ?
+                <DataGrid
+                    className="datagrid"
+                    rows={data}
+                    columns={driverColumns.concat(actionColumn)}
+                    pageSize={9}
+                    rowsPerPageOptions={[9]}
+                    checkboxSelection
+                />
+                :
+                <DataGrid
+                    className="datagrid"
+                    rows={Sdata}
+                    columns={driverColumns.concat(actionColumn)}
+                    pageSize={9}
+                    rowsPerPageOptions={[9]}
+                    checkboxSelection
+                />
+
+            }
         </div>
     )
 }

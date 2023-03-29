@@ -41,7 +41,12 @@ function ViewSupport(props) {
                     <Modal.Title>Support Detail</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-
+                    <p class="text-slate-400 hover:text-purple-400">{props.type}</p>
+                    <p class="text-slate-500 hover:text-purple-400">{props.subject}</p>
+                    <p class="text-slate-500 hover:text-purple-400">{props.message}</p>
+                    <p class="text-black hover:text-gray-400">{props.name}</p>
+                    <p class="text-black hover:text-gray-400">{props.email}</p>
+                    <p class="text-black hover:text-gray-400">{props.date}</p>
 
                 </Modal.Body>
                 <Modal.Footer>
