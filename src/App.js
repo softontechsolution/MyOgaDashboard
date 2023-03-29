@@ -29,6 +29,7 @@ import EarningList from './pages/list/EarningList';
 import SettingList from './pages/list/SettingList';
 import Profile from './pages/list/Profile';
 import Notification from './pages/list/Notification';
+import SupportList from './pages/list/SupportList';
 
 
 function App() {
@@ -168,6 +169,14 @@ function App() {
               <Route index element={
                   <RequireAuth>
                     <Notification/>
+                  </RequireAuth>
+                }
+              />
+            </Route>
+            <Route path="support">
+              <Route index element={
+                  <RequireAuth>
+                    <SupportList/>
                   </RequireAuth>
                 }
               />

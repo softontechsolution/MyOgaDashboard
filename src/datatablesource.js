@@ -337,7 +337,7 @@ export const earningColumns = [
         
     },
     {
-        field: "Company", headerName:"Booking Accepted", width: 150,
+        field: "Company", headerName:"Company", width: 150,
         renderCell:(params)=>{
             return(
                 <div className='cellStatus'>

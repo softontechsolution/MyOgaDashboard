@@ -11,7 +11,6 @@ const Notification = () => {
                 <Navbar />
                 <NotificationPage />
             </div>
-
         </div>
     )
 }

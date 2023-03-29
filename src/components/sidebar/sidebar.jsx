@@ -107,7 +107,7 @@ const Sidebar = () => {
                             <span>Notifications</span>
                         </li>
                     </Link>
-                    <Link>
+                    <Link to="/support" style={{ textDecoration: "none" }}>
                         <li tabindex="0">
                             <CreditScoreIcon className="icon" />
                             <span>Support</span>
