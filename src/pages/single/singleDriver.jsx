@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
-import TableJ from "../../components/table/table";
+import DriverTable from "../../components/table/DriverTable";
 import Chart from "../../components/chart/chart";
 
 const SingleDriver = (props) => {
@@ -84,7 +84,7 @@ const SingleDriver = (props) => {
                 </div>
                 <div className="bottom">
                     <h1 className="title">Last Bookings</h1>
-                    <TableJ />
+                    <DriverTable id={userID} />
                 </div>
             </div>
         </div>

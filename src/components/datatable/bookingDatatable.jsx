@@ -43,7 +43,7 @@ const BookingDatatable = () => {
                 list.push({ id: doc.id, ...doc.data() });
             });
             setData(list);
-            setMsg(" Displaying Users Information ");
+            setMsg(" Displaying All Bookings ");
             setType("success");
             snackbarRef.current.show();
         }, (error) => {
@@ -65,7 +65,6 @@ const BookingDatatable = () => {
             setType("success");
             snackbarRef.current.show();
         } catch (erre) {
-            console.log(erre);
             setMsg(erre.message);
             setType("error");
             snackbarRef.current.show();

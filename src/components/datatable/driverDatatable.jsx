@@ -48,7 +48,7 @@ const DriverDatatable = () => {
         querySnapshot.forEach((doc) => {
             list.push({ id: doc.id, ...doc.data() });
             // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
+
         });
         setSData(list);
     }
@@ -61,7 +61,7 @@ const DriverDatatable = () => {
             setType("success");
             snackbarRef.current.show();
         } catch (erre) {
-            console.log(erre);
+
             setMsg(erre.message);
             setType("error");
             snackbarRef.current.show();

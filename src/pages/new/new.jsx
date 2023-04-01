@@ -32,7 +32,6 @@ const New = ({ inputs, title }) => {
                 (snapshot) => {
                     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                     setPerc(progress)
-                    console.log('Upload is ' + progress + '% done');
                     switch (snapshot.state) {
                         case 'paused':
                             setMsg("Upload is Paused");

@@ -2,7 +2,7 @@ import "./single.scss"
 import Sidebar from "../../components/sidebar/sidebar";
 import Navbar from "../../components/navbar/navbar";
 import Chart from "../../components/chart/chart";
-import TableJ from "../../components/table/table";
+import UserTable from "../../components/table/UserTable";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { doc, getDoc } from "firebase/firestore";
@@ -23,12 +23,11 @@ const Single = (props) => {
                 if (docSnap.exists()) {
                     profile.push({ name: docSnap.data().FullName, Email: docSnap.data().Email, Phone: docSnap.data().Phone, address: docSnap.data().Address, gender: docSnap.data().Gender, dob: docSnap.data()['Date of Birth'], img: docSnap.data()['Profile Photo'] })
                     setData(profile);
-                    console.log("Document data:", docSnap.data());
                 } else {
-                    console.log("No such document!");
+                    alert("No Such Document");
                 }
             } catch (error) {
-                console.log(error);
+                alert("Error", error.message);
             }
         };
         fetchData()
@@ -82,7 +81,9 @@ const Single = (props) => {
                 </div>
                 <div className="bottom">
                     <h1 className="title">Last Bookings</h1>
-                    <TableJ />
+                    <div className="b-bottom">
+                        <UserTable id={userID} />
+                    </div>
                 </div>
             </div>
         </div >
