@@ -59,7 +59,7 @@ const Widget = ({ type }) => {
             data = {
                 title: "BOOKINGS",
                 isMoney: false,
-                nav: './booking',
+                nav: './bookings',
                 link: "see all bookings",
                 query: "Bookings",
                 icon: (

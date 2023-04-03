@@ -145,28 +145,28 @@ const Featured = () => {
                     <CircularProgressbar value={diff} text={`${diff}%`} strokeWidth={3} />
                 </div>
                 <p className="title">Total earnings for {Selected === "1" ? "today" : `${Selected} days`} </p>
-                <p className="amount">NGN{fieldSum}</p>
+                <p className="amount">₦{fieldSum}</p>
                 <p className="desc">This is the total earnigs from completed bookings today</p>
                 <div className="summary">
                     <div className="item">
                         <div className="itemTitle">Target</div>
                         <div className="itemResult positive">
                             <KeyboardArrowDownIcon fontSize="small" />
-                            <div className="resultAmount">NGN20500</div>
+                            <div className="resultAmount">₦20500</div>
                         </div>
                     </div>
                     <div className="item">
                         <div className="itemTitle">Last Week</div>
                         <div className="itemResult positive">
                             <KeyboardArrowUpIcon fontSize="small" />
-                            <div className="resultAmount">NGN{oneSum}</div>
+                            <div className="resultAmount">₦{oneSum}</div>
                         </div>
                     </div>
                     <div className="item">
                         <div className="itemTitle">Last Month</div>
                         <div className="itemResult positive">
                             <KeyboardArrowUpIcon fontSize="small" />
-                            <div className="resultAmount">NGN{lastSum}</div>
+                            <div className="resultAmount">₦{lastSum}</div>
                         </div>
                     </div>
                 </div>
