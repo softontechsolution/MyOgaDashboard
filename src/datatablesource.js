@@ -128,28 +128,33 @@ export const driverColumns = [
     },
 ];
 export const companyColumns = [
-    { field: 'id', headerName: 'ID', width: 150 },
+    { field: 'id', headerName: 'ID', width: 100 },
     {
-        field: "CompanyName", headerName: "Company Name", width: 200, renderCell: (params)=>{
+        field: "Company Name", headerName: "Company Name", width: 200, renderCell: (params)=>{
             return (
                 <div className="cellWithImg">
-                    <img className="cellImg" src="https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg" alt=" avatar "/>
-                    {params.row.CompanyName}
+                   { params.row['Profile Photo'] === null ? <img className="cellImg" src="https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg" alt=" avatar "/>
+                   :<img className="cellImg" src={params.row['Profile Photo']} alt=" avatar "/>
+                   }
+                    {params.row.company}
                 </div>
             )
         }
     },
     {
-        field: "Email", headerName:"Email", width: 200,
+        field: "email", headerName:"Email", width: 200,
     },
     {
-        field: "Phone", headerName:"Company Phone Number", width: 150,
+        field: "phone", headerName:"Company Phone Number", width: 150,
     },
     {
-        field: "DateOfRegistration", headerName:"Date of Registration", width: 150,
+        field: "regnumber", headerName:"Registration Number", width: 150,
     },
     {
-        field: "Address", headerName:"Company Address", width: 150,
+        field: "address", headerName:"Company Address", width: 150,
+    },
+    {
+        field: "location", headerName:"Location", width: 150,
     },
     {
         field: "Status", headerName:"Status", width: 100,
@@ -162,10 +167,18 @@ export const companyColumns = [
         }
     },
     {
-        field: "Document", headerName:"Documents", width: 150,
+        field: "Document", headerName:"Documents", width: 150, renderCell:(params)=>{
+            return(
+                <div className="cellWithImg" >
+                    { params.row.documents === null ? <img className="cellImg" src="https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg" alt=" avatar "/>
+                   :<img className="cellImg" src={params.row.documents} alt=" avatar "/>
+                   }
+                </div>
+            )
+        }
     },
     {
-        field: "timeStamp", headerName:"Date Created", width: 150,
+        field: "date", headerName:"Date Created", width: 150,
     },
 ];
 export const bookingColumns = [
@@ -206,7 +219,7 @@ export const bookingColumns = [
             return(
                 <div className={`cellWithStatus ${params.row.Status}`}>
                     {params.row.Status}
-                    {params.row.Status === "pending"?<VerifyModal Id={params.row.id} customer={params.row['Customer ID']} bookNum={params.row['Booking Number']}/>:<ModalContainer id={params.row.id}/>}
+                    {params.row.Status === "pending"?<VerifyModal Id={params.row.id} customer={params.row['Customer ID']} bookNum={params.row['Booking Number']}/>:<ModalContainer id={params.row['Booking Number']}/>}
                 </div>
             )
         }
@@ -255,7 +268,7 @@ export const statusColumns = [
         renderCell:(params)=>{
             return(
                 <div className='cellStatus'>
-                    {params.row['Arrived at PickUp'] === "1"?"Yes":"Not Yet"}
+                    {params.row['Arrive at PickUp'] === "1"?"Yes":"Not Yet"}
                 </div>
             )
         }
@@ -285,7 +298,7 @@ export const statusColumns = [
         renderCell:(params)=>{
             return(
                 <div className='cellStatus'>
-                    {params.row['Arrived at DropOff'] === "1"?"Yes":"Not Yet"}
+                    {params.row['Arrive DropOff'] === "1"?"Yes":"Not Yet"}
                 </div>
             )
         }
@@ -307,24 +320,11 @@ export const statusColumns = [
 export const earningColumns = [
     { field: 'id', headerName: 'ID', width: 100 },
     {
-        field: "BookingNumber", headerName:"Booking Number", width: 150,
-        renderCell:(params)=>{
-            return(
-                <div className='cellStatus'>
-                    <a href='./'>
-                        {params.row.BookingNumber}
-                    </a>
-                </div>
-            )
-        }
+        field: "BookingID", headerName:"Booking Number", width: 150,
         
     },
     {
-        field: "BookingID", headerName:"Booking ID", width: 150,
-        
-    },
-    {
-        field: "Driver", headerName:"Driver ID", width: 100,
+        field: "Driver", headerName:"Driver ID", width: 150,
         renderCell:(params)=>{
             return(
                 <div className='cellStatus'>
@@ -334,22 +334,12 @@ export const earningColumns = [
                 </div>
             )
         }
-        
     },
     {
         field: "Company", headerName:"Company", width: 150,
-        renderCell:(params)=>{
-            return(
-                <div className='cellStatus'>
-                    <a href='./'>
-                        {params.row.Company}
-                    </a>
-                </div>
-            )
-        }
     },
     {
-        field: "Amount", headerName:"Amount", width: 150,
+        field: "Amount", headerName:"Amount", width: 100,
         renderCell:(params)=>{
             return(
                 <div className='cellStatus'>
@@ -359,7 +349,19 @@ export const earningColumns = [
         }
     },
     {
-        field: "Date Created", headerName:"Date Created", width: 150,
+        field: "Customer", headerName:"Customer ID", width: 100,
+        renderCell:(params)=>{
+            return(
+                <div className='cellStatus'>
+                    <a href='./'>
+                        {params.row.Customer}
+                    </a>
+                </div>
+            )
+        }
+    },
+    {
+        field: "DateCreated", headerName:"Date Created", width: 150,
     },
 ];
 

@@ -114,6 +114,7 @@ const Widget = ({ type }) => {
         fetchData()
     }, [data])
 
+
     return (
         <div className="widget">
             <div className="left">
@@ -126,7 +127,7 @@ const Widget = ({ type }) => {
             <div className="right">
                 <div className={`percentage ${diff < 0 ? "negative" : "positive"}`}>
                     {diff < 0 ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
-                    {diff}%
+                    {diff === Infinity ? "0" : diff}%
                 </div>
                 {data.icon}
             </div>

@@ -35,14 +35,12 @@ const TableJ = () => {
 
 
     return (<TableContainer component={Paper} className="table">
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table sx={{ minWidth: 500 }} aria-label="simple table">
             <TableHead>
                 <TableRow>
-                    <TableCell className="tableCell">Booking ID</TableCell>
                     <TableCell className="tableCell">Booking Number</TableCell>
                     <TableCell className="tableCell">Customer</TableCell>
                     <TableCell className="tableCell">Phone</TableCell>
-                    <TableCell className="tableCell">Driver</TableCell>
                     <TableCell className="tableCell">Pick Up</TableCell>
                     <TableCell className="tableCell">Drop Off</TableCell>
                     <TableCell className="tableCell">Distance</TableCell>
@@ -55,11 +53,9 @@ const TableJ = () => {
             <TableBody>
                 {data.map((row) => (
                     <TableRow key={row.id}>
-                        <TableCell> {row.id}</TableCell>
                         <TableCell className="tableCell" >{row['Booking Number']}</TableCell>
                         <TableCell className="tableCell" >{row['Customer Name']}</TableCell>
                         <TableCell className="tableCell" >{row['Customer Phone']}</TableCell>
-                        <TableCell className="tableCell" >{row['Driver ID']}</TableCell>
                         <TableCell className="tableCell" >{row['PickUp Address']}</TableCell>
                         <TableCell className="tableCell" >{row['DropOff Address']}</TableCell>
                         <TableCell className="tableCell" >{row.Distance}</TableCell>

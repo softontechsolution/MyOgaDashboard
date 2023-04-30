@@ -2,6 +2,7 @@ import './profilePage.scss';
 import { useEffect, useState } from 'react';
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
+import { Link } from "react-router-dom";
 
 const ProfilePage = () => {
 
@@ -46,7 +47,7 @@ const ProfilePage = () => {
             </div>
             <div className="bottom">
                 <div className="p-left">
-                    <img src={"https://images.pexels.com/photos/13419559/pexels-photo-13419559.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"} alt="empty icon" />
+                    <img src={data.map(data => (data.img))} alt="empty icon" />
                 </div>
                 <div className="p-right">
                     <div className="p-detail">
@@ -58,8 +59,14 @@ const ProfilePage = () => {
 
                         <h1>Date Created</h1>
                         <p>{data.map(data => (data.date))}</p>
-                        <button>Change Password</button>
-                        <button>Edit Profile</button>
+                        <button>
+                            Change Password
+                        </button>
+                        <Link to={`/editprofile/${userID}`}>
+                            <button>
+                                Edit Profile
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>

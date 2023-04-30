@@ -73,7 +73,7 @@ const Sidebar = () => {
                     <Link to="/drivers" style={{ textDecoration: "none" }}>
                         <li tabindex="0">
                             <DirectionsCarIcon className="icon" />
-                            <span>Drivers</span>
+                            <span>Riders</span>
                         </li>
                     </Link>
                     <Link to="/company" style={{ textDecoration: "none" }}>

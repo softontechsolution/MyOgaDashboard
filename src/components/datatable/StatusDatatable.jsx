@@ -58,7 +58,7 @@ const StatusDatatable = () => {
         field: "action", headerName: "Action", Width: 250, renderCell: (params) => {
             return (
                 <div className="cellAction">
-                    <ModalContainer id={params.row.id} />
+                    <ModalContainer id={params.row['Booking Number']} />
                 </div >
             )
         }

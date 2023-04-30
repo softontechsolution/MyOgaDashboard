@@ -104,7 +104,7 @@ const Featured = () => {
         const prevMonthData = await getDocs(prevMonthQuery);
         const oneWeekData = await getDocs(oneWeekQuery);
         const twoWeekData = await getDocs(twoWeekQuery);
-        setDiff((oneWeekData.docs.length - twoWeekData.docs.length) / (twoWeekData.docs.length) * 100);
+        setDiff(Math.round((oneWeekData.docs.length - twoWeekData.docs.length) / (twoWeekData.docs.length) * 100));
 
         lastMonthData.forEach((doc) => {
             dataArray.push({ id: doc.id, ...doc.data() });
@@ -142,11 +142,11 @@ const Featured = () => {
             </div>
             <div className="bottom">
                 <div className="featuredChart">
-                    <CircularProgressbar value={diff} text={`${diff}%`} strokeWidth={3} />
+                    <CircularProgressbar value={diff === Infinity ? 0 : diff} text={`${diff}%`} strokeWidth={3} />
                 </div>
                 <p className="title">Total earnings for {Selected === "1" ? "today" : `${Selected} days`} </p>
                 <p className="amount">₦{fieldSum}</p>
-                <p className="desc">This is the total earnigs from completed bookings today</p>
+                <p className="desc">This is the total earnigs from completed trips</p>
                 <div className="summary">
                     <div className="item">
                         <div className="itemTitle">Target</div>

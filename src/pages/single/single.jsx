@@ -1,12 +1,12 @@
 import "./single.scss"
 import Sidebar from "../../components/sidebar/sidebar";
 import Navbar from "../../components/navbar/navbar";
-import Chart from "../../components/chart/chart";
 import UserTable from "../../components/table/UserTable";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
+import SingleFeatured from "../../components/featured/singleFeatured";
 
 const Single = (props) => {
     const location = useLocation();
@@ -46,7 +46,11 @@ const Single = (props) => {
                 <Navbar />
                 <div className="top">
                     <div className="left">
-                        <div className="editButton">Edit</div>
+                        <div className="editButton">
+                            <Link to={`/edituser/${userID}`} style={{ textDecoration: "none" }}>
+                                Edit
+                            </Link>
+                        </div>
                         <h1 className="title">Information</h1>
                         < div className="item" >
                             <img src={data.map(data => (data.img))} alt="avatar" className="itemImg" />
@@ -76,7 +80,7 @@ const Single = (props) => {
                         </div>
                     </div>
                     <div className="right">
-                        <Chart aspect={3 / 1} title="User Usage (Last 6 Months)" />
+                        <SingleFeatured id={userID} />
                     </div>
                 </div>
                 <div className="bottom">

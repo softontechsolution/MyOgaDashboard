@@ -34,13 +34,13 @@ const CompanyDatatable = () => {
         // fetchData()
 
         //Listening to Database
-        const unsub = onSnapshot(collection(db, "Bookings"), (snapShot) => {
+        const unsub = onSnapshot(collection(db, "Companies"), (snapShot) => {
             let list = [];
             snapShot.docs.forEach(doc => {
                 list.push({ id: doc.id, ...doc.data() });
             });
             setData(list);
-            setMsg(" Displaying Users Information ");
+            setMsg(" Displaying Companies Information ");
             setType("success");
             snackbarRef.current.show();
         }, (error) => {
@@ -56,7 +56,7 @@ const CompanyDatatable = () => {
 
     const handleDelete = async (id) => {
         try {
-            await deleteDoc(doc(db, "Bookings", id));
+            await deleteDoc(doc(db, "Companies", id));
             setData(data.filter(item => item.id !== id));
             setMsg("User Deleted Succesfully");
             setType("success");
@@ -90,7 +90,7 @@ const CompanyDatatable = () => {
             </div>
             <DataGrid
                 className="datagrid"
-                rows={companyRows}
+                rows={data}
                 columns={companyColumns.concat(actionColumn)}
                 pageSize={9}
                 rowsPerPageOptions={[9]}

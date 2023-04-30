@@ -13,7 +13,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import { userInputs } from "./formSource";
+import { userInputs, driverInputs, companyInputs, adminInputs } from "./formSource";
 import "./style/dark.scss"
 import { useContext } from "react";
 import { DarkModeContext } from './context/darkModeContext';
@@ -30,6 +30,10 @@ import SettingList from './pages/list/SettingList';
 import Profile from './pages/list/Profile';
 import Notification from './pages/list/Notification';
 import SupportList from './pages/list/SupportList';
+import EditDriver from './pages/edit/editDriver';
+import EditCompany from './pages/edit/editCompany';
+import EditUser from './pages/edit/editUser';
+import EditProfile from './pages/edit/editProfile';
 
 
 function App() {
@@ -181,6 +185,37 @@ function App() {
                 }
               />
             </Route>
+            <Route path="edit/:id"
+              element={
+                <RequireAuth>
+                  <EditDriver inputs={driverInputs} title="Update Driver" />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="editcompany/:id"
+              element={
+                <RequireAuth>
+                  <EditCompany inputs={companyInputs} title="Update Company" />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="edituser/:id"
+              element={
+                <RequireAuth>
+                  <EditUser inputs={userInputs} title="Update User" />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="editprofile/:id"
+              element={
+                <RequireAuth>
+                  <EditProfile inputs={adminInputs} title="Update Profile" />
+                </RequireAuth>
+              }
+            />
           </Route>
         </Routes>
       </BrowserRouter>

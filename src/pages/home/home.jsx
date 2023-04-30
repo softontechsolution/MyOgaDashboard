@@ -20,14 +20,14 @@ const Home = () => {
                 </div>
                 <div className="charts">
                     <Featured />
-                    <Chart aspect={2 / 1} title="Last 6 Months (Revenue)" />
+                    {/*<Chart aspect={2 / 1} title="Last 6 Months (Revenue)" />*/}
                 </div>
-                <div className="listContainer">
-                    <div className="listTitle">Latest Bookings</div>
+                {/*<div className="listContainer">
+                    < div className="listTitle">Latest Bookings</>
                     <TableJ />
-                </div>
-            </div>
-        </div>
+                    </div>*/}
+            </div >
+        </div >
     )
 }
 

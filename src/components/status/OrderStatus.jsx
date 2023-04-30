@@ -1,7 +1,7 @@
 import './orderStatus.scss';
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDocs, getDoc, where, query, collection } from "firebase/firestore";
 import { db } from "../../firebase";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
@@ -37,24 +37,22 @@ const OrderStatus = (props) => {
     const fetchBooking = async () => {
         try {
             const booking = [];
-            const docRef = doc(db, "Order_Status", bookID);
-            const docSnap = await getDoc(docRef);
-            if (docSnap.exists()) {
-                setCusID(docSnap.data()['Customer ID']);
-                setDriverID(docSnap.data()['Driver ID']);
-                setOrderA(docSnap.data()['Order Assigned']);
-                setOutPick(docSnap.data()['Out For PickUp']);
-                setArrivedP(docSnap.data()['Arrived at PickUp']);
-                setParcelP(docSnap.data()['Parcel Picked']);
-                setGoingD(docSnap.data()['Going to DropOff']);
-                setArrivedD(docSnap.data()['Arrived at DropOff']);
-                setComplete(docSnap.data().Completed);
-                booking.push({ bookN: docSnap.data()['Booking Number'], orderA: docSnap.data()['Order Assigned'], outPick: docSnap.data()['Out For PickUp'], parcelP: docSnap.data()['Parcel Picked'], goingD: docSnap.data()['Going to DropOff'], arrivedP: docSnap.data()['Arrived at PickUp'], arrivedD: docSnap.data()['Arrived at DropOff'], complete: docSnap.data().Completed })
-                setBdata(booking);
-                console.log("Document BOOKING data:", docSnap.data());
-            } else {
-                console.log("No such document!");
-            }
+            const q = query(collection(db, "Order_Status"), where("Booking Number", "==", bookID));
+            const docSnap = await getDocs(q);
+            docSnap.forEach((doc) => {
+                setCusID(doc.data()['Customer ID']);
+                setDriverID(doc.data()['Driver ID']);
+                setOrderA(doc.data()['Order Assigned']);
+                setOutPick(doc.data()['Out For PickUp']);
+                setArrivedP(doc.data()['Arrive at PickUp']);
+                setParcelP(doc.data()['Parcel Picked']);
+                setGoingD(doc.data()['Going to DropOff']);
+                setArrivedD(doc.data()['Arrive DropOff']);
+                setComplete(doc.data().Completed);
+                booking.push({ bookN: doc.data()['Booking Number'], orderA: doc.data()['Order Assigned'], outPick: doc.data()['Out For PickUp'], parcelP: doc.data()['Parcel Picked'], goingD: doc.data()['Going to DropOff'], arrivedP: doc.data()['Arrive at PickUp'], arrivedD: doc.data()['Arrive DropOff'], complete: doc.data().Completed })
+                console.log(doc.id, " => ", doc.data());
+            });
+            setBdata(booking);
         } catch (error) {
             console.log(error);
         }

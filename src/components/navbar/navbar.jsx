@@ -8,40 +8,78 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 //import ListIcon from '@mui/icons-material/List';
 import { useContext, useState, useEffect } from "react";
 import { DarkModeContext } from "../../context/darkModeContext";
-import Mmodal from "../modal/PModal";
-import { collection, onSnapshot } from "firebase/firestore";
-import { auth, db } from "../../firebase";
-import { Link } from "react-router-dom";
+import {
+    collection, onSnapshot,
+    doc,
+    getDoc,
+    query,
+} from "firebase/firestore";
+import { db } from "../../firebase";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/authContext";
+
 //import ProfileModal from "../modal/ProfileModal";
 
 const Navbar = () => {
 
     const { dispatch } = useContext(DarkModeContext);
-    const [openModal, setOpenModal] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
+    const navigate = useNavigate();
+    //const navigate = useNavigate();
     //const [category, setCategory] = useState("");
     const [items, setItems] = useState([]);
     const [filteredItems, setFilteredItems] = useState([]);
-    //const userId = auth.currentUser?.uid;
+    const { currentUser } = useContext(AuthContext);
+    const [user, setUser] = useState(null);
+
 
     useEffect(() => {
-        // Fetch the data from Firestore
-        const unsubscribe = onSnapshot(collection(db, "Drivers"), (snapshot) => {
-            const data = snapshot.docs.map((doc) => ({
-                id: doc.id,
-                ...doc.data(),
-            }));
-            // Filter the items array based on the search term
-            const filtered = data.filter((driver) => {
-                const name = driver.FullName?.toLowerCase() ?? "";
-                return name.includes(searchTerm?.toLowerCase() ?? "");
-            });
-            setItems(data);
-            setFilteredItems(filtered);
-        });
+        const fetchUser = async () => {
+            if (currentUser) {
+                const userRef = doc(db, "Admin", currentUser.uid);
+                const docs = await getDoc(userRef);
+                if (docs.exists) {
+                    setUser(docs.data());
+                } else {
+                    alert("No such document!");
+                }
+            }
+        };
 
-        // Clean up the listener when the component unmounts
-        return () => unsubscribe();
+        fetchUser();
+    })
+
+    useEffect(() => {
+        // Fetch the data from Firestore      if (currentUser) {
+        const fetchData = async () => {
+
+            //Listening to Database
+            const unsub = onSnapshot(collection(db, "Drivers"), (snapShot) => {
+                const data = snapShot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+
+                const filtered = data.filter((driver) => {
+                    const name = driver.FullName?.toLowerCase() ?? "";
+                    return name.includes(searchTerm?.toLowerCase() ?? "");
+                });
+                setItems(data);
+                setFilteredItems(filtered);
+                console.log(filtered);
+
+            }, (error) => {
+                console.log(error);
+            });
+
+            return () => {
+                unsub();
+            }
+
+            // Clean up the listener when the component unmounts
+        };
+
+        fetchData();
     }, [searchTerm]);
 
     const handleSearch = () => {
@@ -54,7 +92,6 @@ const Navbar = () => {
 
     return (
         <div className="mNavbar">
-            <Mmodal open={openModal} onClose={() => setOpenModal(false)} />
             <div className="wrapper">
                 <div className="search">
                     <input
@@ -73,7 +110,7 @@ const Navbar = () => {
                             {filteredItems.map((driver) => (
                                 <Link
                                     key={driver.id}
-                                    to={`/drivers/${driver.id}`}
+                                    to={`/users/${driver.id}`}
                                     className="dropdown-item"
                                 >
                                     {driver.FullName}
@@ -102,9 +139,9 @@ const Navbar = () => {
                         <ChatBubbleOutlineIcon className="icon" />
                         <div className="counter">2</div>
                     </div> */}
-                    <div className="item" onClick={() => setOpenModal(true)} >
+                    <div className="item" onClick={() => navigate("/profile", { replace: true, })} >
                         <img
-                            src="https://cdn-icons-png.flaticon.com/512/3033/3033143.png"
+                            src={user ? user.profilePhoto : "https://cdn-icons-png.flaticon.com/512/3033/3033143.png"}
                             alt="cottonbro studio from Pexels"
                             className="avatar"
                         />
